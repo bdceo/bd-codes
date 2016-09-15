@@ -1,4 +1,5 @@
 # bd-codes
 study java from 2009 
 init git at 2016-09-15
-add new line
+add line from bug01
+add line from master
