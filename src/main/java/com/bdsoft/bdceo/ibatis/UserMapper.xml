@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper       
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"       
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.bdsoft.bdceo.ibatis.dao.UserMapper">
+
+	<!-- 可重用的sql代码段 -->
+	<sql id="userComs">
+		id,name,pwd
+	</sql>
+	<resultMap id="userResult" type="User">
+		<id property="pk" column="id" />
+		<result property="name" column="name" />
+		<result property="pwd" column="pwd" />
+	</resultMap>
+	<select id="loadById" parameterType="int" resultMap="userResult">
+		select
+		<include refid="userComs" />
+		from User where id=#{pk}
+	</select>
+	<select id="load" parameterType="int" resultType="hashmap">
+		select * from
+		User where id=#{pk}
+	</select>
+
+	<insert id="save" parameterType="User" useGeneratedKeys="true"
+		keyProperty="id">
+		insert into
+		User(name,pwd) values(#{name},#{pwd})
+	</insert>
+	<update id="update" parameterType="User">
+		update User set name=#{name}
+		where id=#{pk}
+	</update>
+	<delete id="delete" parameterType="int">
+		delete from User where
+		id=#{pk}
+	</delete>
+</mapper>

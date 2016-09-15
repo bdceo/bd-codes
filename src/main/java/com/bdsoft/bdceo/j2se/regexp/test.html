@@ -1,0 +1,31 @@
+<html>
+	<head>
+		<title>test.html</title>
+	</head>
+	<script type="text/javascript">
+  	function check(obj){
+  		//var reg=/^(13\d|15[89])\d{2}$/;
+  		//var reg=/^www\.\w+\.([.]|\w)+$/;
+  		//var reg=/^(0\d{2})\d{8}|(0\d{3})\d{7}$/;
+  		//var reg=/^\d{6}$/;
+  		//var reg=/^[^\s].+$/;
+  		//var reg=/^(\w|[.+-])+@(\w|[.])+\.(\w|[.])+$/;
+  		var reg=/^0[1-5]{1}$/;
+  		if(!reg.test(obj.tt.value)){
+  			alert("not correct!");
+  			obj.tt.value="";
+  			obj.tt.focus();
+  			return false;
+  		}else {
+  			return true;
+  		}
+  	}
+  </script>
+	<body>
+		<form action="login.jsp" onSubmit="return check(this)">
+			<input type="text" id="tt" />
+			<br />
+			<input type="submit" value="Test" />
+		</form>
+	</body>
+</html>

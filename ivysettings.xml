@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<!-- 用于配置 用来下载依赖Jar文件的 存储库位置及相关模式 -->
+<ivysettings>
+	<settings defaultResolver="chained" />
+	<resolvers>
+		<chain name="chained" returnFirst="true">
+			<filesystem name="libraries"><!-- 本地存储库模式 -->
+				<artifact pattern="${ivy.conf.dir}/repository/[artifact]-[revision].[type]" />
+			</filesystem>
+			<ibiblio name="ibiblio" />
+			<url name="ibiblio-mirror">
+				<artifact
+					pattern="http://mirrors.ibiblio.org/pub/mirrors/maven2/[organisation]/[module]/[branch]/[revision]/[branch]-[revision].[ext]" />
+			</url>
+		</chain>
+	</resolvers>
+</ivysettings>

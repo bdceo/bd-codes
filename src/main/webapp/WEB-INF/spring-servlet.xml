@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<bean id="handlerMapping"
+		class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping">
+		<property name="order" value="2" />
+	</bean>
+	<bean id="defaultHandlerMapping"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<value>
+				<!-- /spring/rate.do=rateController -->
+			</value>
+		</property>
+		<property name="order" value="1" />
+	</bean>
+
+	<bean name="/spring/rate.do" id="rateController"
+		class="com.bdsoft.bdceo.spring.mvc.RateController">
+		<property name="rateService" ref="rateService" />
+		<property name="viewName" value="index" />
+	</bean>
+	<bean id="groupAdminDelegate" class="com.bdsoft.bdceo.spring.mvc.GroupAdminDelegate" />
+	<bean name="/spring/groupAdmin.do"
+		class="org.springframework.web.servlet.mvc.multiaction.MultiActionController">
+		<property name="delegate" ref="groupAdminDelegate" />
+		<property name="methodNameResolver" ref="paramResolver" />
+	</bean>
+
+	<bean id="paramResolver"
+		class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+		<property name="paramName" value="op" />
+		<property name="defaultMethodName" value="execute" />
+	</bean>
+
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="requestContextAttribute" value="rc" />
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView" />
+		<property name="prefix" value="/spring/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+</beans>

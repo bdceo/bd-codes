@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Ant配置 -->
+<project name="bd-code" default="init-ivy" basedir="."
+	xmlns:ivy="antlib:org.apache.ivy.ant" xmlns="antlib:org.apache.tools.ant">
+
+	<!-- 参考：http://www.cnblogs.com/hoojo/archive/2013/06/14/java_ant_project_target_task_run.html -->
+
+	<!-- 读取系统环境变量 -->
+	<property environment="env" />
+	<!-- 导入属性配置文件 -->
+	<property file="./src/config.properties" />
+
+	<property name="appVer" value="${app.version}" />
+	<property name="antVer" value="${ant.version}" />
+	<property name="javaVer" value="${ant.java.version}" />
+
+	<property name="tomcat.home" value="${env.CATALINA_HOME}" />
+
+	<path id="classpath">
+		<pathelement location="${app.build.classes}" />
+		<fileset dir="${app.src.lib}">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${app.web.lib}">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${tomcat.home}/lib">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+
+	<tstamp>
+		<format property="build.timestamp" pattern="yyyy-MM-dd hh:mm:ss" />
+	</tstamp>
+
+	<filelist id="bakfiles" dir="${app.build.dir}" files="*.jar, *.war" />
+
+	<patternset id="bakpattern">
+		<include name="${app.build.dir}/**/${app.final.name}.jar" />
+		<exclude name="${app.build.dir}/**/${app.final.name}.war" />
+	</patternset>
+
+	<target name="bakup" if="${bakfiles}">
+		<copy file="${app.build.dir}/${app.final.name}.jar" tofile="${app.build.bak}/${app.final.name}.jar.bak" />
+		<copy todir="${app.build.bak}">
+			<fileset dir="${app.build.dir}">
+				<include name="*.war" />
+			</fileset>
+		</copy>
+	</target>
+	<target name="clear" depends="bakup">
+		<delete dir="${app.build.dir}" />
+	</target>
+	<target name="init" depends="clear">
+		<mkdir dir="${app.build.classes}" />
+	</target>
+
+	<target name="build-project" depends="init">
+		<echo message="${build.timestamp} start build-project" />
+		<javac srcdir="${app.src.dir}" destdir="${app.build.classes}"
+			target="${javaVer}" source="${javaVer}">
+			<compilerarg line="-encoding ${app.build.encoding}" />
+			<classpath refid="classpath" />
+		</javac>
+		<copy todir="${app.build.classes}">
+			<fileset dir="${app.src.dir}" includes="*.xml, *.properties" />
+		</copy>
+		<zip destfile="${app.build.dir}/classes.zip" basedir="${app.build.classes}" />
+		<echo message="${build.timestamp} finish build-project ${app.final.name}" />
+		<echo message="ant version: ${antVer}" />
+		<echo message="java version: ${javaVer}" />
+	</target>
+
+	<target name="run-anttest" depends="build-project">
+		<java classname="com.bdsoft.y2013.m10.AntTest" classpath="${app.build.classes}" />
+	</target>
+
+	<target name="jar-bdcode" depends="run-anttest">
+		<jar destfile="${app.build.dir}/${app.final.name}.jar" basedir="${app.build.classes}">
+			<manifest>
+				<attribute name="bdtest" value="20131029" />
+			</manifest>
+		</jar>
+	</target>
+
+	<target name="war-bdcode" depends="build-project">
+		<war destfile="${app.build.dir}/${app.final.name}.war" basedir="${basedir}/web"
+			webxml="${basedir}/web/WEB-INF/web.xml">
+			<exclude name="WEB-INF/classes/**" />
+			<exclude name="WEB-INF/lib/**" />
+			<lib dir="${app.web.lib}" />
+			<classes dir="${app.build.classes}" />
+		</war>
+	</target>
+
+	<target name="pack-all" depends="jar-bdcode,war-bdcode">
+	</target>
+
+	<target name="zip-weibo4j">
+		<zip destfile="${app.build.dir}/weibo4j.zip" basedir="${app.src.dir}/weibo4j" />
+	</target>
+	<target name="gzip-weibo4j">
+		<zip destfile="${app.build.dir}/weibo4j.gz" basedir="${app.src.dir}/weibo4j" />
+	</target>
+	<target name="unzip-classes" if="${app.build.dir}/classes.zip">
+		<unzip dest="${app.build.bak}/classes" src="${app.build.dir}/classes.zip" />
+	</target>
+
+	<!-- Ivy相关 -->
+	<property name="ivy.home" value="${user.home}/ivy" />
+	<property name="ivy.version" value="2.0.0" />
+	<property name="ivy.jar.dir" value="${ivy.home}/lib" />
+	<property name="ivy.jar.name" value="${ivy.jar.dir}/ivy.jar" />
+	<property name="ivy.zip.name" value="${ivy.home}/ivy-${ivy.version}.zip" />
+	<property name="ivy.unzip.dir" value="${ivy.home}/apache-ivy-${ivy.version}" />
+	<property name="ivy.local" value="d:/download/data/ivy2" />
+	<taskdef uri="antlib:org.apache.ivy.ant" resource="org/apache/ivy/ant/antlib.xml"
+		classpath="${ivy.jar.name}" />
+	<target name="download-ivy">
+		<mkdir dir="${ivy.jar.dir}" />
+		<get
+			src="http://archive.apache.org/dist/ant/ivy/${ivy.version}/apache-ivy-${ivy.version}-bin.zip"
+			dest="${ivy.zip.name}" />
+		<unzip src="${ivy.zip.name}" dest="${ivy.home}" />
+		<copy file="${ivy.unzip.dir}/ivy-${ivy.version}.jar" tofile="${ivy.jar.name}" />
+	</target>
+	<target name="init-ivy" depends="download-ivy">
+		<echo message="user.home is ${user.home}" />
+		<ivy:settings file="${basedir}/ivysettings.xml" />
+		<property name="ivy.default.ivy.user.dir" value="${ivy.local}" />
+		<ivy:retrieve />
+	</target>
+	<target name="ivy-report" depends="init-ivy">
+		<ivy:report todir="${app.build.dir}/ivy-reports" />
+	</target>
+</project>

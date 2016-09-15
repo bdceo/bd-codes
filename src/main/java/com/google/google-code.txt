@@ -1,0 +1,9 @@
+
+Google开源注入框架Guice
+
+	项目主页：http://code.google.com/p/google-guice/
+	IBM博客：http://www.ibm.com/developerworks/cn/java/j-guice.html
+	
+	
+
+	

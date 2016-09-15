@@ -1,0 +1,350 @@
+  查看文章    
+正则表达式（1）2008-11-30 12:26JS的正则表达式
+
+//最基本也是最常用的一些表达式 :
+
+匹配中文字符的正则表达式： [\u4e00-\u9fa5]
+评注：匹配中文还真是个头疼的事，有了这个表达式就好办了
+
+匹配双字节字符(包括汉字在内)：[^\x00-\xff]
+评注：可以用来计算字符串的长度（一个双字节字符长度计2，ASCII字符计1）
+
+匹配空白行的正则表达式：\n\s*\r
+评注：可以用来删除空白行
+
+匹配HTML标记的正则表达式：<(\S*?)[^>]*>.*?</\1>|<.*? />
+评注：网上流传的版本太糟糕，上面这个也仅仅能匹配部分，对于复杂的嵌套标记依旧无能为力
+
+匹配首尾空白字符的正则表达式：^\s*|\s*$
+评注：可以用来删除行首行尾的空白字符(包括空格、制表符、换页符等等)，非常有用的表达式
+
+匹配Email地址的正则表达式：\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*
+评注：表单验证时很实用
+
+匹配网址URL的正则表达式：[a-zA-z]+://[^\s]*
+评注：网上流传的版本功能很有限，上面这个基本可以满足需求
+
+匹配帐号是否合法(字母开头，允许5-16字节，允许字母数字下划线)：^[a-zA-Z][a-zA-Z0-9_]{4,15}$
+评注：表单验证时很实用
+
+匹配国内电话号码：\d{3}-\d{8}|\d{4}-\d{7}
+评注：匹配形式如 0511-4405222 或 021-87888822
+
+匹配腾讯QQ号：[1-9][0-9]{4,}
+评注：腾讯QQ号从10000开始
+
+匹配中国邮政编码：[1-9]\d{5}(?!\d)
+评注：中国邮政编码为6位数字
+
+匹配身份证：\d{15}|\d{18}
+评注：中国的身份证为15位或18位
+
+匹配ip地址：\d+\.\d+\.\d+\.\d+
+评注：提取ip地址时有用
+
+匹配特定数字：
+^[1-9]\d*$　 　 //匹配正整数
+^-[1-9]\d*$ 　 //匹配负整数
+^-?[1-9]\d*$　　 //匹配整数
+^[1-9]\d*|0$　 //匹配非负整数（正整数 + 0）
+^-[1-9]\d*|0$　　 //匹配非正整数（负整数 + 0）
+^[1-9]\d*\.\d*|0\.\d*[1-9]\d*$　　 //匹配正浮点数
+^-([1-9]\d*\.\d*|0\.\d*[1-9]\d*)$　 //匹配负浮点数
+^-?([1-9]\d*\.\d*|0\.\d*[1-9]\d*|0?\.0+|0)$　 //匹配浮点数
+^[1-9]\d*\.\d*|0\.\d*[1-9]\d*|0?\.0+|0$　　 //匹配非负浮点数（正浮点数 + 0）
+^(-([1-9]\d*\.\d*|0\.\d*[1-9]\d*))|0?\.0+|0$　　//匹配非正浮点数（负浮点数 + 0）
+评注：处理大量数据时有用，具体应用时注意修正
+
+匹配特定字符串：
+^[A-Za-z]+$　　//匹配由26个英文字母组成的字符串
+^[A-Z]+$　　//匹配由26个英文字母的大写组成的字符串
+^[a-z]+$　　//匹配由26个英文字母的小写组成的字符串
+^[A-Za-z0-9]+$　　//匹配由数字和26个英文字母组成的字符串
+^\w+$　　//匹配由数字、26个英文字母或者下划线组成的字符串
+评注：最基本也是最常用的一些表达式 
+
+//
+
+正则表达式用于字符串处理，表单验证等场合，实用高效，但用到时总是不太把握，以致往往要上网查一番。我将一些常用的表达式收藏在这里，作备忘之用。本贴随时会更新。1、非负整数：^\d+$
+
+2、正整数：^[0-9]*[1-9][0-9]*$
+
+3、非正整数：^((-\d+)|(0+))$
+
+4、负整数：^-[0-9]*[1-9][0-9]*$
+
+5、整数：^-?\d+$
+
+6、非负浮点数：^\d+(\.\d+)?$
+
+7、正浮点数：^((0-9)+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9 ]+)|([0-9]*[1-9][0-9]*))$
+
+8、非正浮点数：^((-\d+\.\d+)?)|(0+(\.0+)?))$
+
+9、负浮点数：^(-((正浮点数正则式)))$
+
+10、英文字符串：^[A-Za-z]+$
+
+11、英文大写串：^[A-Z]+$
+
+12、英文小写串：^[a-z]+$
+
+13、英文字符数字串：^[A-Za-z0-9]+$
+
+14、英数字加下划线串：^\w+$
+
+15、E-mail地址：^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$
+
+16、URL：^[a-zA-Z]+://(\w+(-\w+)*)(\.(\w+(-\w+)*))*(\?\s*)?$ 
+或：^http:\/\/[A-Za-z0-9]+\.[A-Za-z0-9]+[\/=\?%\-&_~`@[\]\':+!]*([^<>\"\"])*$ 
+17、邮政编码：^[1-9]\d{5}$
+
+18、中文：^[\u0391-\uFFE5]+$
+
+19、电话号码：^((\(\d{2,3}\))|(\d{3}\-))?(\(0\d{2,3}\)|0\d{2,3}-)?[1-9]\d{6,7}(\-\d{1,4})?$
+
+20、手机号码：^((\(\d{2,3}\))|(\d{3}\-))?13\d{9}$
+
+21、双字节字符(包括汉字在内)：^\x00-\xff
+
+22、匹配首尾空格：(^\s*)|(\s*$)（像vbscript那样的trim函数）
+
+23、匹配HTML标记：<(.*)>.*<\/\1>|<(.*) \/> 
+
+24、匹配空行：\n[\s| ]*\r
+
+25、提取信息中的网络链接：(h|H)(r|R)(e|E)(f|F)   *=   *('|")?(\w|\\|\/|\.)+('|"|   *|>)?
+
+26、提取信息中的邮件地址：\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*
+
+27、提取信息中的图片链接：(s|S)(r|R)(c|C)   *=   *('|")?(\w|\\|\/|\.)+('|"|   *|>)?
+
+28、提取信息中的IP地址：(\d+)\.(\d+)\.(\d+)\.(\d+)
+
+29、提取信息中的中国手机号码：(86)*0*13\d{9}
+
+30、提取信息中的中国固定电话号码：(\(\d{3,4}\)|\d{3,4}-|\s)?\d{8}
+
+31、提取信息中的中国电话号码（包括移动和固定电话）：(\(\d{3,4}\)|\d{3,4}-|\s)?\d{7,14}
+
+32、提取信息中的中国邮政编码：[1-9]{1}(\d+){5}
+
+33、提取信息中的浮点数（即小数）：(-?\d*)\.?\d+
+
+34、提取信息中的任何数字 ：(-?\d*)(\.\d+)?  
+
+35、IP：(\d+)\.(\d+)\.(\d+)\.(\d+)
+
+36、电话区号：/^0\d{2,3}$/
+
+37、腾讯QQ号：^[1-9]*[1-9][0-9]*$
+
+38、帐号(字母开头，允许5-16字节，允许字母数字下划线)：^[a-zA-Z][a-zA-Z0-9_]{4,15}$
+
+匹配中文字符的正则表达式： [\u4e00-\u9fa5]
+
+匹配双字节字符(包括汉字在内)：[^\x00-\xff]
+
+应用：计算字符串的长度（一个双字节字符长度计2，ASCII字符计1）
+
+String.prototype.len=function (){return this.replace([^\x00-\xff]/g,"aa").length;}
+
+匹配空行的正则表达式：\n[\s| ]*\r
+
+匹配HTML标记的正则表达式：/<(.*)>.*<\/\1>|<(.*) \/>/
+
+匹配首尾空格的正则表达式：(^\s*)|(\s*$)
+
+应用：javascript中没有像vbscript那样的trim函数，我们就可以利用这个表达式来实现，如下：
+
+String.prototype.trim = function()
+{
+return this.replace(/(^\s*)|(\s*$)/g, "");
+}
+
+利用正则表达式分解和转换IP地址：
+
+下面是利用正则表达式匹配IP地址，并将IP地址转换成对应数值的Javascript程序：
+
+function IP2V(ip)
+{
+re=/(\d+)\.(\d+)\.(\d+)\.(\d+)/g //匹配IP地址的正则表达式
+if(re.test(ip))
+{
+return RegExp.$1*Math.pow(255,3))+RegExp.$2*Math.pow(255,2))+RegExp.$3*255+RegExp.$4*1
+}
+else
+{
+throw new Error("Not a valid IP address!")
+}
+}
+
+不过上面的程序如果不用正则表达式，而直接用split函数来分解可能更简单，程序如下：
+
+var ip="10.100.20.168"
+ip=ip.split(".")
+alert("IP值是："+(ip[0]*255*255*255+ip[1]*255*255+ip[2]*255+ip[3]*1))
+
+匹配Email地址的正则表达式：\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*
+
+匹配网址URL的正则表达式：http://([\w-]+\.)+[\w-]+(/[\w- ./?%&=]*)?
+
+利用正则表达式去除字串中重复的字符的算法程序：[注：此程序不正确，原因见本贴回复]
+
+var s="abacabefgeeii"
+var s1=s.replace(/(.).*\1/g,"$1")
+var re=new RegExp("["+s1+"]","g")
+var s2=s.replace(re,"")
+alert(s1+s2) //结果为：abcefgi
+
+我原来在CSDN上发贴寻求一个表达式来实现去除重复字符的方法，最终没有找到，这是我能想到的最简单的实现方法。思路是使用后向引用取出包括重复的字符，再以重复的字符建立第二个表达式，取到不重复的字符，两者串连。这个方法对于字符顺序有要求的字符串可能不适用。
+
+得用正则表达式从URL地址中提取文件名的javascript程 序，如下结果为page1
+
+s=" http://www.9499.net/page1.htm"
+s=s.replace(/(.*\/){0,}([^\.]+).*/ig,"$2")
+alert(s)
+
+利用正则表达式限制网页表单里的文本框输入内容：
+
+用正则表达式限制只能输入中文：onkeyup="value=value.replace(/[^\u4E00-\u9FA5]/g,'')" onbeforepaste=" clipboardData.setData('text',clipboardData.getData('text').replace(/[^\u4E00-\u9FA5]/g,''))"
+
+用正则表达式限制只能输入全角字符： onkeyup="value=value.replace(/[^\uFF00-\uFFFF]/g,'')" onbeforepaste="clipboardData.setData ('text',clipboardData.getData('text').replace(/[^\uFF00-\uFFFF]/g,''))"
+
+用正则表达式限制只能输入数字：onkeyup="value=value.replace(/[^\d]/g,'') "onbeforepaste="clipboardData.setData('text',clipboardData.getData ('text').replace(/[^\d]/g,''))"
+
+用正则表达式限制只能输入数字和英文：onkeyup="value=value.replace(/[\W]/g,'') "onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"
+
+//
+
+中国电话号码验证
+匹配形式如:0511-4405222 或者021-87888822 或者 021-44055520-555 或者 (0511)4405222
+正则表达式 "((d{3,4})|d{3,4}-)?d{7,8}(-d{3})*"
+
+中国邮政编码验证
+匹配形式如:215421
+正则表达式 "d{6}"
+
+电子邮件验证
+匹配形式如:justali@justdn.com
+正则表达式 "w+([-+.]w+)*@w+([-.]w+)*.w+([-.]w+)*"
+
+身份证验证
+匹配形式如:15位或者18位身份证
+正则表达式 "d{18}|d{15}"
+
+常用数字验证
+正则表达式 
+"d{n}" n为规定长度
+"d{n,m}" n到m的长度范围
+
+非法字符验证
+匹配非法字符如:< > & / ' | 
+正则表达式 [^<>&/|'\]+
+
+日期验证
+匹配形式如:20030718,030718
+范围:1900--2099
+正则表达式((((19){1}|(20){1})d{2})|d{2})[01]{1}d{1}[0-3]{1}d{1}////////////////////前4行程序用于保护js代码不被下载 // ////////////////////基本正则表达式/////////////////// 
+//非空验证 
+function NotNull (str) { return (str!=""); } 
+
+//邮件地址验证 
+function checkEmail (str) { 
+//邮件地址正则表达式 
+isEmail1=/^\w+([\.\-]\w+)*\@\w+([\.\-]\w+)*\.\w+$/;
+//邮件地址正则表达式
+isEmail2=/^.*@[^_]*$/; 
+//验证邮件地址，返回结果 
+return (isEmail1.test(str)&&isEmail2.test(str)); } 
+
+//身份证验证 function checkIDCard (str) { 
+//身份证正则表达式(15位) 
+isIDCard1=/^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$/; 
+//身份证正则表达式(18位) 
+isIDCard2=/^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{4}$/; 
+//验证身份证，返回结果 
+return (isIDCard1.test(str)||isIDCard2.test(str)); } 
+
+//IP验证 function checkIP (str) { 
+//IP正则表达式 
+IP='(25[0-5]|2[0-4]\\d|1\\d\\d|\\d\\d|\\d)'; IPdot=IP+'\\.'; isIPaddress=new RegExp('^'+IPdot+IPdot+IPdot+IP+'$'); 
+//验证IP，返回结果 
+return (isIPaddress.test(str)); } 
+
+//主页（网址）验证 
+function checkHomepage (str) { 
+//主页正则表达式 //
+isHomepage=/^\w+([\.\-]\w)*$/; isHomepage=/^\w+(\.\w+)+\.\w+$/; 
+//验证主页，返回结果 
+return (isHomepage.test(str)); } 
+
+//是否数字 
+function isNum (str) { //isNumber=/^([1-9]\d*(\.\d+)?)|(\d+(\.\d+))$/; isNumber=/^\d+(\.\d+)?$/;
+//验证并返回结果 
+return (isNumber.test(str)); } 
+
+//是否整数
+function isInt (str) { isInteger=/^\d+$/; 
+//验证并返回结果 
+return (isInteger.test(str)); } 
+
+//是否字母 
+function isChar (str) { isCharacter=/^[A-Za-z]+$/; 
+//验证并返回结果
+return (isCharacter.test(str)); } 
+/////////////////////基本弹出窗口/////////////////// 
+function checkBoolean(bv,i,w) { if(bv==false) { try{i.focus();}catch(e){} alert(w); return false; } return true } 
+////////////////////元素和取值判断//////////////////// 
+// 已选择 
+function checkElement_selected(item,alert_str) { if(item.type=="select-one")return checkElement_NotNull(item,alert_str); if(alert_str.length==0)alert_str=item.title+"为必选项！"; rt=false; if(item.length>0) { for(i=0;i<item.length;i++){rt=rt||item[i].checked;} } else { rt=item.checked } return checkBoolean(rt,item[0],alert_str); return true; } 
+// 不为空 
+function checkElement_NotNull(a,alert_str,g) { v=a.value; w=alert_str; if(alert_str.length==0)w=a.title+"不能为空！"; return(checkValue_NotNull(v,a,w,g)); } function checkValue_NotNull(v,i,w,g) { if(g!="NOT_TRIM")v=v.replace(/(^\s*)|(\s*$)/g, ""); bv=NotNull(v); return(checkBoolean(bv,i,w)); } 
+// 合法邮箱 
+function checkElement_IsEmail(a,alert_str,g) { v=a.value; w=alert_str; if(alert_str.length==0)w=a.title+"不能为空！"; return(checkValue_IsEmail(v,a,w,g)); } function checkValue_IsEmail(v,i,w,g) { if(g!="NOT_TRIM")v=v.replace(/(^\s*)|(\s*$)/g, ""); bv=checkEmail(v); return(checkBoolean(bv,i,w)); } 
+// 合法身份证
+function checkElement_IsIDCard(a,alert_str,g) { v=a.value; w=alert_str; if(alert_str.length==0)w=a.title+"不能为空！"; return(checkValue_IsIDCard(v,a,w,g)); } function checkValue_IsIDCard(v,i,w,g) { if(g!="NOT_TRIM")v=v.replace(/(^\s*)|(\s*$)/g, ""); bv=checkIDCard(v); return(checkBoolean(bv,i,w)); } 
+// 合法IP 
+function checkElement_IsIP(a,alert_str,g) { v=a.value; w=alert_str; if(alert_str.length==0)w=a.title+"不能为空！"; return(checkValue_IsIP(v,a,w,g)); } function checkValue_IsIP(v,i,w,g) { if(g!="NOT_TRIM")v=v.replace(/(^\s*)|(\s*$)/g, ""); bv=checkIP(v); return(checkBoolean(bv,i,w)); } 
+// 验证数字
+function checkElement_IsNum(a,alert_str,g) { v=a.value; w=alert_str; if(alert_str.length==0)w=a.title+"不能为空！"; return(checkValue_IsNum(v,a,w,g)); } function checkValue_IsNum(v,i,w,g) { if(g!="NOT_TRIM")v=v.replace(/(^\s*)|(\s*$)/g, ""); bv=isNum(v); return(checkBoolean(bv,i,w)); } 
+// 验证整数
+function checkElement_IsInt(a,alert_str,g) { v=a.value; w=alert_str; if(alert_str.length==0)w=a.title+"不能为空！"; return(checkValue_IsInt(v,a,w,g)); } function checkValue_IsInt(v,i,w,g) { if(g!="NOT_TRIM")v=v.replace(/(^\s*)|(\s*$)/g, ""); bv=isInt(v); return(checkBoolean(bv,i,w)); } // 验证字母 function checkElement_IsChar(a,alert_str,g) { v=a.value; w=alert_str; if(alert_str.length==0)w=a.title+"不能为空！"; return(checkValue_IsChar(v,a,w,g)); } function checkValue_IsChar(v,i,w,g) { if(g!="NOT_TRIM")v=v.replace(/(^\s*)|(\s*$)/g, ""); bv=isChar(v); return(checkBoolean(bv,i,w)); }
+// 合法主页
+function checkElement_IsHomepage(a,alert_str,g) { v=a.value; w=alert_str; if(alert_str.length==0)w=a.title+"不能为空！"; return(checkValue_IsHomepage(v,a,w,g)); } function checkValue_IsHomepage(v,i,w,g) { if(g!="NOT_TRIM")v=v.replace(/(^\s*)|(\s*$)/g, ""); bv=checkHomepage(v); return(checkBoolean(bv,i,w)); }
+
+<SCRIPT Language="JavaScript">
+function checkIDCard (str) 
+{ 
+var isIDCard1 = new Object();
+var isIDCard2 = new Object();
+
+//isIDCard1=/^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$/; 
+
+//
+isIDCard2=/^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{4}$/; 
+
+//验证身份证，如果正确，提交到reg.asp页面
+if (isIDCard1.test(str)||isIDCard2.test(str))
+{    
+document.forms["form1"].action = "./reg.asp";
+document.forms[0].submit();
+return true;
+}
+alert("return false;
+
+}请重新输入正确的身份证码！");
+身份证正则表达式(18位) 
+  
+</SCRIPT>
+<Form name="form1" method=post onSubmit="return checkIDCard(this.User_iden.value)">
+    <input name="User_iden" id="User_iden" size="18">
+    <input type="submit" name="testcall" value="
+</Form> 验证身份证号码">身份证正则表达式(15位) 
+//身份证正则表达式(15位) 
+isIDCard1=/^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$/; 
+
+//身份证正则表达式(18位) 
+
+isIDCard2=/^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{4}$/; 
+ 
