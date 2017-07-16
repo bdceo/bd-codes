@@ -9,7 +9,7 @@ package com.bdsoft.y2009;
  */
 public class StringTest {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception{
 		String s = "abc";
 		String s2 = s;
 		System.out.println(s == s2);// true，s和s2指向同一内存地址
@@ -25,6 +25,16 @@ public class StringTest {
 		str.append(System.currentTimeMillis());
 		System.out.println(str);
 		System.out.println(str.capacity());
+		
+		// 编码转换
+		s="æ¥è-æ¨¡çææ";
+		System.out.println(s);
+		
+		String after=java.net.URLDecoder.decode(s,"utf-8");
+		System.out.println(after);
+		
+		after=new String(s.getBytes("ISO8859-1"),"UTF-8");
+		System.out.println(after);		
 
 	}
 

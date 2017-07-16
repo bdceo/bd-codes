@@ -5,6 +5,7 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.ByteArrayInputStream;
 import java.io.CharArrayReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileReader;
@@ -23,7 +24,19 @@ public class IOTest {
 		// testReader();
 		// testWriter();
 		// testBufferedStream();
-		testBufferedReader();
+		// testBufferedReader();
+
+		File f = new File("/home/dcy/xx");
+		System.out.println(f.exists());
+		FileInputStream in = new FileInputStream(f);
+		FileOutputStream out = new FileOutputStream("/home/dcy/cp");
+		byte[] tmp = new byte[1024];
+		int rc = 0;
+		while ((rc = in.read(tmp)) != -1) {
+			out.write(tmp, 0, rc);
+		}
+		out.flush();
+
 	}
 
 	// IO，基本概念及相关常用类演示
@@ -65,8 +78,7 @@ public class IOTest {
 					System.out.println();
 				}
 			}
-			System.out.println("\nfile " + TEST_FILE + ", read total byte = "
-					+ bc);
+			System.out.println("\nfile " + TEST_FILE + ", read total byte = " + bc);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -117,8 +129,7 @@ public class IOTest {
 					System.out.println();
 				}
 			}
-			System.out.println("file " + TEST_FILE + ", read total char = "
-					+ cc);
+			System.out.println("file " + TEST_FILE + ", read total char = " + cc);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

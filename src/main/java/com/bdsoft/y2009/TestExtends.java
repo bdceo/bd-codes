@@ -1,5 +1,7 @@
 package com.bdsoft.y2009;
 
+import java.io.IOException;
+
 /**
  * 测试类继承：<br>
  * 1，子类和父类的初始化过程<br>
@@ -40,7 +42,8 @@ public class TestExtends {
 		Person ps = st; // Person ps = new Student(22);
 		System.out.println("st.id=" + st.id); // 22，子类自己的id属性，即现在st类型是Student
 		System.out.println("ps.id=" + ps.id); // 0，父类的id属性
-		System.out.println("ps.getId()=" + ps.getId()); // 22，实际调用的是子类方法，因为ps指向的是new Student()对象引用
+		System.out.println("ps.getId()=" + ps.getId()); // 22，实际调用的是子类方法，因为ps指向的是new
+														// Student()对象引用
 	}
 
 	static void test(Person p) {
@@ -142,4 +145,21 @@ class Student extends Person {
 		this.id = id;
 	}
 
+}
+
+interface IntTemp {
+	public void read() throws IOException;
+
+	public void write() throws Exception;
+}
+
+// 实现类抛出异常需要时父类的子类或不抛出
+class ImpTemp implements IntTemp {
+	// public void read() throws Exception {
+	public void read() throws IOException {
+
+	}
+
+	public void write() {
+	}
 }

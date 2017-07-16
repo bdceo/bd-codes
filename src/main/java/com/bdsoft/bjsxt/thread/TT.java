@@ -1,5 +1,7 @@
 package com.bdsoft.bjsxt.thread;
 
+import java.text.MessageFormat;
+
 public class TT implements Runnable {
 
 	/**
@@ -15,14 +17,17 @@ public class TT implements Runnable {
 	 * 
 	 */
 	public static void main(String[] args) throws Exception {
-		TT tt = new TT();
-		Thread td = new Thread(tt);
-		td.start();
+		// TT tt = new TT();
+		// Thread td = new Thread(tt);
+		// td.start();
+		//
+		// // Thread.sleep(1000);
+		// tt.m2();
+		// System.out.println(Thread.currentThread().getId() + "-->main");
+		// System.out.println("\tmain中b=" + tt.b);
 
-//		Thread.sleep(1000);
-		tt.m2();
-		System.out.println(Thread.currentThread().getId() + "-->main");
-		System.out.println("\tmain中b=" + tt.b);
+		String res = MessageFormat.format("this is {0}","1000");
+		System.out.println(res);
 	}
 
 	private int b = 0;
@@ -31,7 +36,7 @@ public class TT implements Runnable {
 		System.out.println(Thread.currentThread().getId() + "-->m1");
 		b = 1000;
 		Thread.sleep(5000);
-		System.out.println("\tm1中b=" + b); 
+		System.out.println("\tm1中b=" + b);
 	}
 
 	public synchronized void m2() throws Exception {

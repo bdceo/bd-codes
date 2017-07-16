@@ -11,7 +11,7 @@ public class RmSvnFiles {
 //	static String DEL_DIR = "target";
 
 	public static void main(String[] args) {
-		String path = "D:/workspace/cmp_vko/workspace/2b";
+		String path = "D:/gitspace/bd-codes";
 
 		ls4rmf(new File(path));
 	}

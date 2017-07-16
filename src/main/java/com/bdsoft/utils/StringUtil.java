@@ -8,9 +8,93 @@ import java.util.regex.Pattern;
 
 public class StringUtil {
 
+	private static String[] UNIT = { "拾", "佰", "千", "万", "亿" };
+	private static String[] NUM = { "零", "壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖" };
+
 	public static void main(String[] es) {
 		String str = "null";
 		System.out.println(isEmpty(str));
+		str = getRmbUpper(123191);
+		System.out.println(str);
+	}
+
+	public static String getRmbUpper(int lowerNum) {
+		StringBuffer sb = new StringBuffer();
+		if (lowerNum > 0 && lowerNum < Math.pow(10, 1)) {
+			sb.append(getRmbNum(lowerNum));
+		} else if (lowerNum >= Math.pow(10, 1) && lowerNum < Math.pow(10, 2)) {
+			sb.append(getRmbNum(lowerNum / 10)).append(getRmbUnit(String.valueOf(lowerNum).length()));
+			sb.append(getRmbUpper(lowerNum % 10));
+		} else if (lowerNum >= Math.pow(10, 2) && lowerNum < Math.pow(10, 3)) {
+			int t = (int) Math.pow(10, 2);
+			sb.append(getRmbNum(lowerNum / t)).append(getRmbUnit(String.valueOf(lowerNum).length()));
+			int tmp = lowerNum % t;
+			if (tmp > 0 && tmp < t / 10) {
+				sb.append("零");
+			}
+			sb.append(getRmbUpper(lowerNum % t));
+		} else if (lowerNum >= Math.pow(10, 3) && lowerNum < Math.pow(10, 4)) {
+			int t = (int) Math.pow(10, 3);
+			sb.append(getRmbNum(lowerNum / t)).append(getRmbUnit(String.valueOf(lowerNum).length()));
+			int tmp = lowerNum % t;
+			if (tmp > 0 && tmp < t / 10) {
+				sb.append("零");
+			}
+			sb.append(getRmbUpper(lowerNum % t));
+		} else if (lowerNum >= Math.pow(10, 4) && lowerNum < Math.pow(10, 8)) {
+			int t = (int) Math.pow(10, 4);
+			sb.append(getRmbUpper(lowerNum / t)).append(getRmbUnit(String.valueOf(lowerNum).length()));
+			int tmp = lowerNum % t;
+			if (tmp > 0 && tmp < t / 10) {
+				sb.append("零");
+			}
+			sb.append(getRmbUpper(lowerNum % t));
+		} else if (lowerNum >= Math.pow(10, 8)) {
+			int t = (int) Math.pow(10, 8);
+			sb.append(getRmbUpper(lowerNum / t)).append(getRmbUnit(String.valueOf(lowerNum).length()));
+			int tmp = lowerNum % t;
+			if (tmp > 0 && tmp < t / 10) {
+				sb.append("零");
+			}
+			sb.append(getRmbUpper(lowerNum % t));
+		} else {
+			// sb.append("零");
+		}
+		return sb.toString();
+	}
+
+	private static String getRmbNum(int i) {
+		return NUM[i];
+	}
+
+	private static String getRmbUnit(int i) {
+		String unit = "";
+		switch (i) {
+		case 2:
+			unit = UNIT[0];
+			break;
+		case 3:
+			unit = UNIT[1];
+			break;
+		case 4:
+			unit = UNIT[2];
+			break;
+		case 5:
+			unit = UNIT[3];
+			break;
+		case 6:
+			unit = UNIT[3];
+			break;
+		case 7:
+			unit = UNIT[3];
+			break;
+		case 8:
+			unit = UNIT[3];
+			break;
+		default:
+			unit = UNIT[4];
+		}
+		return unit;
 	}
 
 	public static String subStr(String str, int len) {
@@ -178,8 +262,7 @@ public class StringUtil {
 	 *            目标编码 if null is UTF-8
 	 * @return if src is null return is ""
 	 */
-	public static String getEncoding(String src, String srcCharset,
-			String objCharset) {
+	public static String getEncoding(String src, String srcCharset, String objCharset) {
 		try {
 			if (src == null) {
 				return "";
@@ -211,8 +294,7 @@ public class StringUtil {
 	 * @param noEqualsStr
 	 * @return
 	 */
-	public static String equalsIgnoreCase(String str, String objStr,
-			String equalsStr, String noEqualsStr) {
+	public static String equalsIgnoreCase(String str, String objStr, String equalsStr, String noEqualsStr) {
 		if (noEqualsStr == null) {
 			noEqualsStr = "";
 		}
@@ -311,8 +393,7 @@ public class StringUtil {
 	// / <param name="Omit">是否使用省略符</param>
 	// / <param name="Sign">省略符</param>
 	// / <returns></returns>
-	public static String StringLeft(String word, int size, boolean omit,
-			String sign) {
+	public static String StringLeft(String word, int size, boolean omit, String sign) {
 		StringBuffer sb = new StringBuffer();
 		int len = 0;
 		for (int i = 0; i < word.length(); i++) {
