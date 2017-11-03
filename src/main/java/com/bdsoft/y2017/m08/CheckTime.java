@@ -20,5 +20,8 @@ public class CheckTime {
         System.out.println("有效期："+valid);
         // 恢复默认时区
         TimeZone.setDefault(curZone);
+
+        String id = "00019201";
+        System.out.println(Integer.parseInt(id));
     }
 }
