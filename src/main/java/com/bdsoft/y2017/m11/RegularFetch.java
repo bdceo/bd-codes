@@ -16,7 +16,7 @@ public class RegularFetch {
         String str = "authc,roles[1],role,roleOr[\"1\",\"2\"],port[],protral,rest[]";
         sop(str);
 
-        String reg = "([a-zA-Z]+\\b)";
+        String reg = "([a-zA-Z]+\\b(\\[[\"\\d,\"]*\\])?[,]?)";
         Pattern pat = Pattern.compile(reg);
         Matcher mat = pat.matcher(str);
 

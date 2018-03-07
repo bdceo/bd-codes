@@ -13,7 +13,7 @@ public class PC {
 		P p = new P(33, 6);
 		System.out.println(p);
 
-		C c = new C(16, 1);
+		C c = new C(10, 4);
 		System.out.println(c);
 
 		C c1 = new C(33, 6);
