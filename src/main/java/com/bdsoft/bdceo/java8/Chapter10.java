@@ -1,7 +1,7 @@
 package com.bdsoft.bdceo.java8;
 
 /**
- * Optional
+ * Optional替代Null
  *
  * @author 丁辰叶
  * @version 1.0
@@ -10,6 +10,8 @@ package com.bdsoft.bdceo.java8;
 public class Chapter10 {
 
     public static void main(String[] args) {
+
+
 
     }
 }

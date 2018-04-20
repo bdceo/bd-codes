@@ -13,10 +13,10 @@ public class ThreadPoolTest {
 	// 线程池相关测试
 	public static void main(String[] args) {
 		// 相关类：Executors,ExecutorService,ScheduledExecutorService
-		 fixedThreadPool1();
+//		 fixedThreadPool1();
 		// fixedThreadPool2();
 		// cachedThreadPool();
-		// scheduleThreadPool();
+		 scheduleThreadPool();
 
 		// 相关类：ThreadPoolExecutor,BlockingQueue
 //		manualThreadPool();
