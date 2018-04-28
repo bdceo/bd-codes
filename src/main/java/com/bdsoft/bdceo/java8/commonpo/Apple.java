@@ -5,17 +5,17 @@ package com.bdsoft.bdceo.java8.commonpo;
  */
 public class Apple {
 
-    private int weight;
+    private Integer weight;
     private String color;
 
     public Apple() {
     }
 
-    public Apple(int weight) {
+    public Apple(Integer weight) {
         this.weight = weight;
     }
 
-    public Apple(int weight, String color) {
+    public Apple(Integer weight, String color) {
         this.weight = weight;
         this.color = color;
     }
@@ -28,11 +28,11 @@ public class Apple {
         return a.getWeight() > 150;
     }
 
-    public int getWeight() {
+    public Integer getWeight() {
         return weight;
     }
 
-    public void setWeight(int weight) {
+    public void setWeight(Integer weight) {
         this.weight = weight;
     }
 

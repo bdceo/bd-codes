@@ -7,11 +7,11 @@ import java.io.File;
  */
 public class RmSvnFiles {
 
-	static String DEL_DIR = ".git";
-//	static String DEL_DIR = "target";
+//	static String DEL_DIR = ".git";
+	static String DEL_DIR = "target";
 
 	public static void main(String[] args) {
-		String path = "D:/gitspace/bd-codes";
+		String path = "e:/juranspace";
 
 		ls4rmf(new File(path));
 	}
