@@ -1,7 +1,7 @@
 package com.bdsoft.bdceo.java8.commonpo;
 
 /**
- * 功能
+ * 菜品
  *
  * @author 丁辰叶
  * @version 1.0
@@ -10,9 +10,28 @@ package com.bdsoft.bdceo.java8.commonpo;
 public class Dish {
 
     private String name;
+    private boolean vegetarian;
     private int calories;
+    private Type type;
 
-    public CaloricLevel getCaloricLevel(){
+    public Dish(String name, boolean vegetarian, int calories, Type type) {
+        this.name = name;
+        this.vegetarian = vegetarian;
+        this.calories = calories;
+        this.type = type;
+    }
+
+    public Dish() {
+    }
+
+    public Dish(String name, int calories) {
+        this.name = name;
+        this.calories = calories;
+    }
+
+    public enum Type {MEAT, FISH, OTHER}
+
+    public CaloricLevel getCaloricLevel() {
         if (this.getCalories() <= 400) {
             return CaloricLevel.DIET;
         } else if (this.getCalories() <= 700) {
@@ -32,6 +51,22 @@ public class Dish {
 
     public int getCalories() {
         return calories;
+    }
+
+    public boolean isVegetarian() {
+        return vegetarian;
+    }
+
+    public void setVegetarian(boolean vegetarian) {
+        this.vegetarian = vegetarian;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
     }
 
     public void setCalories(int calories) {
