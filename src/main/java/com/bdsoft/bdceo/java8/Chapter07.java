@@ -1,10 +1,14 @@
 package com.bdsoft.bdceo.java8;
 
+import java.util.Spliterator;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveTask;
+import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.stream.IntStream;
 import java.util.stream.LongStream;
 import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 /**
  * 并行数据处理与性能
@@ -53,7 +57,51 @@ public class Chapter07 {
         System.out.println("forkJoinSum sum done in:" +
                 Chapter07.measureSumPerf(Chapter07::forkJoinSum, 10_000_000) + " msecs");
 
+        // Spliterator：可分迭代器，遍历数据源，为了并行执行而设计
+        String SENTENCE =
+                " Nel mezzo del cammin di nostra vita " +
+                        "mi ritrovai in una selva oscura" +
+                        " ché la dritta via era smarrita ";
+        System.out.println("Found " + countWordsIteratively(SENTENCE) + " words");
 
+        // 以函数式风格重写单词计数器
+        Stream<Character> charStream = IntStream.range(0, SENTENCE.length()).mapToObj(SENTENCE::charAt);
+        System.out.println("Found " + countWords(charStream) + " words");
+
+        // 并行化，并且会出现字数统计错误，要确保String不是在随机位置拆开，只能在词尾拆开
+        charStream = IntStream.range(0, SENTENCE.length()).mapToObj(SENTENCE::charAt);
+        System.out.println("Found " + countWords(charStream.parallel()) + " words");
+
+        // 实现一个Spliterator
+        Spliterator<Character> spliterator = new WordCounterSpliterator(SENTENCE);
+        charStream = StreamSupport.stream(spliterator, true); // true-创建一个并行流
+        System.out.println("Found " + countWords(charStream) + " words");
+
+
+    }
+
+    // 流式处理
+    public static int countWords(Stream<Character> charStream) {
+        // 累加，合并
+        WordCounter wc = charStream.reduce(new WordCounter(0, true), WordCounter::accumulate, WordCounter::combine);
+        return wc.getCounter();
+    }
+
+    // 字数统计
+    public static int countWordsIteratively(String s) {
+        int counter = 0;
+        boolean lastSpace = true;
+        for (char c : s.toCharArray()) {
+            if (Character.isWhitespace(c)) {
+                lastSpace = true;
+            } else {
+                if (lastSpace) {
+                    counter++;
+                }
+                lastSpace = false;
+            }
+        }
+        return counter;
     }
 
     // 合并分支
@@ -193,4 +241,88 @@ class ForkJoinSumCalc extends RecursiveTask<Long> {
         return sum;
     }
 
+}
+
+class WordCounter {
+
+    private int counter;
+    private boolean lastSpace;
+
+    public WordCounter(int counter, boolean lastSpace) {
+        this.counter = counter;
+        this.lastSpace = lastSpace;
+    }
+
+    // 类似迭代算法，一个个字符遍历计算
+    public WordCounter accumulate(Character c) {
+        if (Character.isWhitespace(c)) {
+            return lastSpace ? this : new WordCounter(counter, true);
+        } else {
+            return lastSpace ? new WordCounter(counter + 1, false) : this;
+        }
+    }
+
+    // 合并两个WordCounter
+    public WordCounter combine(WordCounter wordCounter) {
+        return new WordCounter(this.counter + wordCounter.getCounter(), wordCounter.isLastSpace());
+    }
+
+    public int getCounter() {
+        return counter;
+    }
+
+    public boolean isLastSpace() {
+        return lastSpace;
+    }
+}
+
+// 迭代器拆分
+class WordCounterSpliterator implements Spliterator<Character> {
+
+    private String string;
+    private int currentChar = 0;
+
+    public WordCounterSpliterator(String string) {
+        this.string = string;
+    }
+
+    // 处理当前字符
+    @Override
+    public boolean tryAdvance(Consumer<? super Character> action) {
+        action.accept(string.charAt(currentChar++));
+        // 如果还有字符要处理，继续返回true
+        return currentChar < string.length();
+    }
+
+    // 拆分逻辑
+    @Override
+    public Spliterator<Character> trySplit() {
+        // 最少10个字符起处理
+        int currentSize = string.length() - currentChar;
+        if (currentSize < 10) {
+            return null;
+        }
+
+        // 拆分位置，从中间开始
+        for (int splitPos = currentSize / 2 + currentChar; splitPos < string.length(); splitPos++) {
+            if (Character.isWhitespace(string.charAt(splitPos))) {
+                // 创建新的，从开始到拆分的位置
+                Spliterator<Character> spliterator = new WordCounterSpliterator(string.substring(currentChar, splitPos));
+                // 将当前迭代处理的起始位置
+                currentChar = splitPos;
+                return spliterator;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public long estimateSize() {
+        return string.length() - currentChar;
+    }
+
+    @Override
+    public int characteristics() {
+        return ORDERED + SIZED + SUBSIZED + NONNULL + IMMUTABLE;
+    }
 }
