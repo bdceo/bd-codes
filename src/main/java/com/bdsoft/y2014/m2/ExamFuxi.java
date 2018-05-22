@@ -95,9 +95,9 @@ public class ExamFuxi {
 class Super {
 	int id;
 
-	// public Super() {
-	// System.out.println("父类Super.Super()");
-	// }
+	 public Super() {
+	 System.out.println("父类Super.Super()");
+	 }
 
 	public Super(int id) {
 		System.out.println("父类Super.Super(int id)");
