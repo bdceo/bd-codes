@@ -16,6 +16,11 @@ public class JdkProxy {
 		String res = sub.request();
 
 		System.out.println("响应：" + res);
+		System.out.println("------------------------");
+
+		// 普通代理
+		SubjectImpProxy proxy = new SubjectImpProxy(new SubjectImp());
+		proxy.request();
 	}
 
 }

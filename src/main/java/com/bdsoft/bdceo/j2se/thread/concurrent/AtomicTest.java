@@ -13,11 +13,9 @@ public class AtomicTest {
 		AtomicLongArray ala = new AtomicLongArray(data);
 
 		ExecutorService pool = Executors.newFixedThreadPool(3);
-
 		for (int i = 0; i < 3; i++) {
 			pool.execute(new Ato(ala));
 		}
-
 		pool.shutdown();
 
 		for (int i = 0; i < ala.length(); i++) {
@@ -35,7 +33,7 @@ class Ato implements Runnable {
 	public Ato(AtomicLongArray a) {
 		this.aa = a;
 	}
-
+	// 1, 22, 333, 4444, 55555, 0, 1, 22, 333
 	public void run() {
 		aa.set(4, 13);
 
@@ -43,4 +41,5 @@ class Ato implements Runnable {
 
 		aa.set(5, ld);
 	}
+	// 1 22 333 4456 13 4456 1 22 333
 }

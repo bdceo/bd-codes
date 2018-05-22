@@ -16,10 +16,10 @@ public class ThreadPoolTest {
 //		 fixedThreadPool1();
 		// fixedThreadPool2();
 		// cachedThreadPool();
-		 scheduleThreadPool();
+//		 scheduleThreadPool();
 
 		// 相关类：ThreadPoolExecutor,BlockingQueue
-//		manualThreadPool();
+		manualThreadPool();
 	}
 
 	public static void fixedThreadPool1() {

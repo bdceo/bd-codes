@@ -31,6 +31,8 @@ public class SingleDirList {
 		nm.addNode("无微不至");
 		nm.addNode("晓迈科技");
 		nm.addNode("微课网");
+		nm.addNode("律典");
+		nm.addNode("居然设计家");
 		System.out.println(nm);
 		
 		nm.delNode("石油在线");
