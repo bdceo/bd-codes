@@ -11,7 +11,7 @@ public class SortTest {
 		int[] itd = { 1, 3, 4, 8, 9, 7, 5, 2, 6, 0 };
 		print(itd);
 		sort(itd);
-		sort_2(itd);
+		sort_2(new int[]{ 1, 3, 4, 8, 9, 7, 5, 2, 6, 0 });
 	}
 
 	public static void print(int[] itd) {
@@ -32,11 +32,13 @@ public class SortTest {
 					flag = 1;
 				}
 			}
+			System.out.println("i="+i);
+			print(itd);
 			if (flag == 0) {
 				break;
 			}
 		}
-		print(itd);
+		System.out.println("-------------------------");
 	}
 
 	public static void sort_2(int[] a) {
@@ -53,7 +55,8 @@ public class SortTest {
 				a[i] = a[k];
 				a[k] = temp;
 			}
+			System.out.println("i="+i);
+			print(a);
 		}
-		print(a);
 	}
 }
