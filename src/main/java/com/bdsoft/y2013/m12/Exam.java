@@ -1,6 +1,7 @@
 package com.bdsoft.y2013.m12;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -199,8 +200,14 @@ public class Exam {
         StringBuffer sb = new StringBuffer("1");
         add(sb);// 11
         System.out.print("," + sb.toString());// ,11
-
         // 完整输出 2,1,11,1,11,11
+        System.out.println("--------");
+
+        // 数组是引用传递，方法内的修改会影响外部的值
+        int[] arr = new int[]{1,2,3};
+        add(arr);
+        Arrays.stream(arr).forEach(System.out::print);
+
     }
 
     public void add(int i) {
@@ -216,6 +223,12 @@ public class Exam {
     public void add(StringBuffer sb) {
         sb.append("1");
         System.out.print(sb.toString());
+    }
+
+    public void add(int[] arr) {
+//        arr[0] = 0;
+        arr[0]++;
+        System.out.println("修改："+arr[0]);
     }
 
 }

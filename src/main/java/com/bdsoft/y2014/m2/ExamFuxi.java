@@ -7,10 +7,10 @@ public class ExamFuxi {
 		 ex022001();
 
 		// try-catch中return后finally是否继续执行
-		 ex022601();
+//		 ex022601();
 
 		// 线程sleep和wait的区别
-		ex022801();
+//		ex022801();
 
 	}
 
@@ -72,7 +72,9 @@ public class ExamFuxi {
 		// 如果父类无无参构造函数，将会编译出错
 		// 此时，需要在子类构造函数中调用其他有参的父类构造函数
 
-		Suber suber = new Suber();
+		Super suber = new Suber();
+
+		Super s2 = new Suber(4); // 如果注释super的调用，则默认会调用父类的无参构造函数
 
 		// 所以，总结，继承过程中，构造函数不存在继承关系，只是默认隐式调用问题
 	}
@@ -118,5 +120,6 @@ class Suber extends Super {
 		super(33);
 		System.out.println("子类Suber.Suber(int id)");
 		this.id = id;
+		Super ss = new Super(id);
 	}
 }
