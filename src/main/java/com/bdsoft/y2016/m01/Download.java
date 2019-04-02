@@ -28,40 +28,40 @@ public class Download {
 	 */
 	
 	public static void main(String[] args) throws Exception {
-		String mp4Url = "http://s.yytcdn.com/swf/common/mvplayer.swf";
-		String storeName = "d:/download/media/mvplayer.swf";
-		// download(mp4Url, storeName);
+		String mp4Url = "http://os05.huashenghaoche.com/usercenter/7ee236a38a5b1ac5173e358406198e3b.mp4";
+		String storeName = "d:/download/oss.mp4";
+		 download(mp4Url, storeName);
 
-		String vid = "2532217";
-		String ver = "1.8.4.1";
-		// String t = "" + (new Date().getTime() / 300000);
-		String t = "4863542";
-		System.out.println("t=" + t);
-
-		String sc = ":" + vid + ":" + t + ":" + ver;
-		String d5 = MD5Encode.encode(sc);
-		System.out.println(d5);
-		d5 = MD5Encode.encode(d5 + sc);
-		System.out.println(d5);
-		System.out.println("17f151ed294f5a5c3859725d2bda8b70");
-
-		// http://www.yinyuetai.com/main/get-mv-info?flex=true&sc=12a0575e9a7eab081f45b9ca97fa89dd&t=4863542&v=1.8.4.1&videoId=2532217
-		String mvInfoUrl = "http://www.yinyuetai.com/main/get-mv-info?flex=true&sc=#SC#&t=#T#&v=1.8.4.1&videoId=#VID#";
-		mvInfoUrl = mvInfoUrl.replaceAll("#SC#", sc).replaceAll("#T#", t)
-				.replaceAll("#VID#", vid);
-		System.out.println(mvInfoUrl);
-		System.exit(1);
-
-		String url = "http://api.yinyuetai.com/mv/secret-key";
-		// String html = NetTool.getTextContent(url, "utf-8");
-		String html = new String(NetTool.readStream(NetTool
-				.getContentStreamByPost(url, "utf-8")));
-		// String html =
-		// NetTool.getContentFromStream(NetTool.getContentStreamByPost(url,
-		// "utf-8"), "utf-8");
-		System.out.println(html);
-
-		// FileUtil.writeFile("d:/download/media/info", html, true);
+//		String vid = "2532217";
+//		String ver = "1.8.4.1";
+//		// String t = "" + (new Date().getTime() / 300000);
+//		String t = "4863542";
+//		System.out.println("t=" + t);
+//
+//		String sc = ":" + vid + ":" + t + ":" + ver;
+//		String d5 = MD5Encode.encode(sc);
+//		System.out.println(d5);
+//		d5 = MD5Encode.encode(d5 + sc);
+//		System.out.println(d5);
+//		System.out.println("17f151ed294f5a5c3859725d2bda8b70");
+//
+//		// http://www.yinyuetai.com/main/get-mv-info?flex=true&sc=12a0575e9a7eab081f45b9ca97fa89dd&t=4863542&v=1.8.4.1&videoId=2532217
+//		String mvInfoUrl = "http://www.yinyuetai.com/main/get-mv-info?flex=true&sc=#SC#&t=#T#&v=1.8.4.1&videoId=#VID#";
+//		mvInfoUrl = mvInfoUrl.replaceAll("#SC#", sc).replaceAll("#T#", t)
+//				.replaceAll("#VID#", vid);
+//		System.out.println(mvInfoUrl);
+//		System.exit(1);
+//
+//		String url = "http://api.yinyuetai.com/mv/secret-key";
+//		// String html = NetTool.getTextContent(url, "utf-8");
+//		String html = new String(NetTool.readStream(NetTool
+//				.getContentStreamByPost(url, "utf-8")));
+//		// String html =
+//		// NetTool.getContentFromStream(NetTool.getContentStreamByPost(url,
+//		// "utf-8"), "utf-8");
+//		System.out.println(html);
+//
+//		// FileUtil.writeFile("d:/download/media/info", html, true);
 
 	}
 

@@ -5,6 +5,8 @@ import java.util.regex.Pattern;
 
 /**
  * 功能 http://tool.oschina.net/uploads/apidocs/jquery/regexp.html
+ * <p>
+ * 正则提取
  *
  * @version 1.0
  * @auth 丁辰叶

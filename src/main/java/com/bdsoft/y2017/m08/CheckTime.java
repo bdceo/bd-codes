@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.TimeZone;
 
 /**
- * Created by bdceo on 2017/8/9.
+ * java8 日期函数计算比较
  */
 public class CheckTime {
 

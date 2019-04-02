@@ -1,20 +1,16 @@
 package com.bdsoft.y2018.m05;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
- * 功能
- *
- * @author 丁辰叶
- * @version 1.0
- * @date 2018/5/23 14:15
+ * 安全删除集合元素：通过迭代器删除，而不是集合自带方法remove
  */
 public class Exam {
 
     public static void main(String[] args) {
-
-
+        safeRmListElements();
     }
 
     public static void safeRmListElements() {
@@ -26,13 +22,13 @@ public class Exam {
         ints.add(9);
 
         // 借助迭代器移出
-//        Iterator<Integer> ite = ints.iterator();
-//        while (ite.hasNext()) {
-//            int v = ite.next();
-//            if (v % 3 == 0) {
-//                ite.remove();
-//            }
-//        }
+        Iterator<Integer> ite = ints.iterator();
+        while (ite.hasNext()) {
+            int v = ite.next();
+            if (v % 3 == 0) {
+                ite.remove();
+            }
+        }
 
         // 循环中不能删除
         for (Integer i : ints) {
@@ -40,7 +36,6 @@ public class Exam {
                 ints.remove(i); // ConcurrentModificationException
             }
         }
-
         System.out.println(ints);
     }
 

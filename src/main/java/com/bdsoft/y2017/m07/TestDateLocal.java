@@ -31,5 +31,4 @@ public class TestDateLocal {
         System.out.println(clock.toString());
     }
 
-
 }

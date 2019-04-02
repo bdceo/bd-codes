@@ -1,16 +1,13 @@
 package com.bdsoft.y2017.m07;
 
-import org.springframework.util.CollectionUtils;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
- * Created by bdceo on 2017/7/24.
+ * 测试集合拷贝
  */
 public class TestListCp {
 
@@ -28,10 +25,11 @@ public class TestListCp {
         prt(tmp);
         prt("");
 
-        tmp = new ArrayList(Arrays.asList(new String[prds.size()]));
-        Collections.copy(tmp, prds);
+        List<Prd> tmp2 = new ArrayList(Arrays.asList(new String[prds.size()]));
+        prt(tmp2);
+        Collections.copy(tmp2, prds);
         prt("copy集合：");
-        prt(tmp);
+        prt(tmp2);
         prt("");
     }
 
