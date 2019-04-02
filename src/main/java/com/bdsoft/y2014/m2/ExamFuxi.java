@@ -73,6 +73,7 @@ public class ExamFuxi {
 		// 此时，需要在子类构造函数中调用其他有参的父类构造函数
 
 		Super suber = new Suber();
+		System.out.println("---");
 
 		Super s2 = new Suber(4); // 如果注释super的调用，则默认会调用父类的无参构造函数
 
@@ -98,27 +99,28 @@ class Super {
 	int id;
 
 	 public Super() {
-	 System.out.println("父类Super.Super()");
+	 System.out.println("父类.Super()");
 	 }
 
 	public Super(int id) {
-		System.out.println("父类Super.Super(int id)");
+		System.out.println("父类.Super(int id)");
 		this.id = id;
 	}
 }
 
 // 模拟子类
 class Suber extends Super {
+
 	int id;
 
 	public Suber() {
-		super(12);
-		System.out.println("子类Suber.Suber()");
+		super(12); // 指定会调用父类的有参构造函数
+		System.out.println("子类.Suber()");
 	}
 
 	public Suber(int id) {
-		super(33);
-		System.out.println("子类Suber.Suber(int id)");
+//		super(33); // 注释，则会调用父类的无参构造函数
+		System.out.println("子类.Suber(int id)");
 		this.id = id;
 		Super ss = new Super(id);
 	}
