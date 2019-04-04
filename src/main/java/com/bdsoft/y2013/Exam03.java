@@ -1,4 +1,4 @@
-package com.bdsoft.y2013.m03;
+package com.bdsoft.y2013;
 
 import java.sql.Date;
 import java.sql.Timestamp;
@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Exam {
+public class Exam03 {
 
     // 静态代码块按顺序执行
     static {
@@ -26,11 +26,10 @@ public class Exam {
      * 入口
      */
     public static void main(String[] args) throws Exception {
-        Exam test = new Exam();
-        test.ex0306();
-//		 test.ex0322();
+        Exam03 test = new Exam03();
+//        test.ex0306();
 //		 test.ex0329();
-//        test.ex0330();
+        test.ex0330();
         System.out.println("over");
     }
 
@@ -58,7 +57,7 @@ public class Exam {
         int big = 3;
         Integer[] ita = new Integer[]{13, 98, 20, 47, 63, 0, 37, 5, 10, 18};
         System.out.println("原始数组 = ");
-        Exam.pa(ita);
+        Exam03.pa(ita);
 
         // 排序,从大到小,冒泡
         int len = ita.length;
@@ -73,7 +72,7 @@ public class Exam {
             }
         }
         System.out.println("排序后 = ");
-        Exam.pa(tmp);
+        Exam03.pa(tmp);
 
         // 获取下标big的数组元素
         int n = tmp[big - 1];
@@ -84,46 +83,6 @@ public class Exam {
         for (; i < len && ita[i] != n; i++) {
         }
         System.out.println(n + "在原数组的索引是：" + i);
-    }
-
-    public static <T> void pa(T[] arr) {
-        for (int i = 0, len = arr.length; i < len; i++) {
-            System.out.print(arr[i] + " ");
-        }
-        System.out.println();
-    }
-
-    public void ex0322() {
-        // 变量标示符规范：不能数字特特殊字符开头或关键字
-        // int 2a,-a,#a.const;
-        int _a;
-        int $a;
-
-        // 邮箱正则
-        String email = "bdceo@qq. com";
-        String reg = "[\\w[.-]]+@[\\w[.-]]+.[\\w[.-]]+";
-        reg = "\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*";
-        Pattern pt = Pattern.compile(reg);
-        Matcher ma = pt.matcher(email);
-        System.out.println(ma.find());
-
-        // 线程让步
-        Exam am1 = new Exam();
-        Exam am2 = am1;
-        synchronized (am1) {
-            System.out.println("before-try");
-            try {
-                am2.wait();
-                System.out.println("after-wait");
-                System.out.println("try");
-            } catch (InterruptedException e) {
-                System.out.println("InterruptedException");
-            } catch (Exception e) {
-                System.out.println("Exception");
-            } finally {
-                System.out.println("finally");
-            }
-        }
     }
 
     public void ex0306() {
@@ -142,7 +101,7 @@ public class Exam {
         Timestamp time = new Timestamp(ud.getTime());
         System.out.println(time.toString());
 
-        // 继承关系的实例化过程
+        // 继承关系的实例化过程：静态代码块会在构造函数执行前被先执行
         B b = new B();
 
         // 集合中的对象引用:三个集合引用同一个book，任意一个修改都会反映到其他两个集合本身内的元素
@@ -182,6 +141,12 @@ public class Exam {
         b = new Book("Spring", 11);
     }
 
+    public static <T> void pa(T[] arr) {
+        for (int i = 0, len = arr.length; i < len; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println();
+    }
 }
 
 class A {

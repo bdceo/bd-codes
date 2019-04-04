@@ -9,7 +9,7 @@ public class TestChar {
 		int j = (int) s.charAt(0);
 		System.out.println(j);
 		j = Integer.parseInt(Character.toString(s.charAt(0)));
-		System.out.println(j); 
+		System.out.println(j);
 		System.out.println(s.substring(1));
 	}
 

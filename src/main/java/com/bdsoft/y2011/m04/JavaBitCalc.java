@@ -43,7 +43,6 @@ public class JavaBitCalc {
 		// 00,
 		// 00, E4, 28, 23, 0F, 01, 02, 09, 0D, 16 };
 		// Convert.ToByte();
-
 	}
 
 	// hexString = 4B

@@ -1,4 +1,4 @@
-package com.bdsoft.y2012.m09;
+package com.bdsoft.y2012.weibo;
 
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;

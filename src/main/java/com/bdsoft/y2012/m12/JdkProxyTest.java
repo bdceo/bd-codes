@@ -10,9 +10,9 @@ import net.sf.cglib.proxy.MethodProxy;
 
 /** 静态代理模拟实现 **/
 interface Count {
-	public void queryCount();
+	  void queryCount();
 
-	public void updateCount();
+	  void updateCount();
 }
 
 class CountImpl implements Count {
@@ -74,7 +74,7 @@ public class JdkProxyTest {
 
 /** JDK-动态代理模拟实现 **/
 interface BookFacade {
-	public void addBook();
+	  void addBook();
 }
 
 class BookFacadeImpl implements BookFacade {

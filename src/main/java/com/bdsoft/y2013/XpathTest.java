@@ -1,4 +1,4 @@
-package com.bdsoft.y2013.m10;
+package com.bdsoft.y2013;
 
 import java.io.BufferedReader;
 import java.io.File;
