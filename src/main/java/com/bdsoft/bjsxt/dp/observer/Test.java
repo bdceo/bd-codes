@@ -60,7 +60,7 @@ public class Test {
 }
 
 interface WakeUpListener {
-	public void ActionToWakenUp(WakeUpEvent e);
+	void ActionToWakenUp(WakeUpEvent e);
 }
 
 class Dad implements WakeUpListener {

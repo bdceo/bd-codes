@@ -4,9 +4,6 @@ import org.springframework.util.StringUtils;
 
 /**
  * 基本的配置策略实现
- * 
- * @author bdceo
- *
  */
 public abstract class BaseConfigStrategy implements ConfigStrategy {
 

@@ -1,9 +1,22 @@
- package com.bdsoft.gkh.decorator;
+package com.bdsoft.gkh.decorator;
 
-import com.bdsoft.gkh.decorator.Convert;
-import com.bdsoft.gkh.decorator.IRead;
-import com.bdsoft.gkh.decorator.ReadStrFromFile;
-import com.bdsoft.gkh.decorator.ReadStrFromNet;
+public class Decorator1 {
+
+    /**
+     * 装饰器，适配器模式
+     */
+    public static void main(String[] args) {
+        // 适配器
+        IRead iread = new ReadStrFromNet();
+        SubReadStrFromFile srsff = new SubReadStrFromFile(new Convert(iread));
+        srsff.read();
+
+        System.out.println("");
+        // 装饰器
+        Convert convert = new Convert(new ReadStrFromFile());
+        convert.convert();
+    }
+}
 
 /*
  * 单向适配器模式是在主模块上接入一个扩展模块，用继承法：
@@ -14,55 +27,47 @@ import com.bdsoft.gkh.decorator.ReadStrFromNet;
  * */
 //装饰模式要点：主模块接口注入扩展模块
 interface IRead {
-	public abstract void read();
+    void read();
 }
 
 class ReadStrFromFile implements IRead {// 主模块
-	public void read() {
-		System.out.println("从文件读取字符串");
-	}
+
+    public void read() {
+        System.out.println("从文件读取字符串");
+    }
 }
 
 class ReadStrFromNet implements IRead {// 主模块
-	public void read() {
-		System.out.println("从网络读取字符串");
-	}
+
+    public void read() {
+        System.out.println("从网络读取字符串");
+    }
 }
 
 // 装饰模式
 class Convert {// 扩展模块,可以用Spring装配，可以为任何实现了IRead接口的类服务
-	private IRead iread;
+    private IRead iread;
 
-	public Convert(IRead iread) {
-		this.iread = iread;
-	}
+    public Convert(IRead iread) {
+        this.iread = iread;
+    }
 
-	public void convert() {
-		iread.read();
-		System.out.println("转大写字母");
-	}
+    public void convert() {
+        iread.read();
+        System.out.println("转大写字母");
+    }
 }
 
-// 适配器模式：
+// 适配器模式
 class SubReadStrFromFile extends ReadStrFromFile {
-	private Convert convert;
+    private Convert convert;
 
-	public SubReadStrFromFile(Convert con) {
-		this.convert = con;
-	}
+    public SubReadStrFromFile(Convert con) {
+        this.convert = con;
+    }
 
-	public void read() {
-		super.read();
-		convert.convert();
-	}
-}
-
-public class Decorator1 {
-	public static void main(String[] args) {
-		// SubReadStrFromFile srsff = new SubReadStrFromFile(new Convert());
-		// srsff.read();
-
-		Convert convert = new Convert(new ReadStrFromNet());
-		convert.convert();
-	}
+    public void read() {
+        super.read();
+        convert.convert();
+    }
 }

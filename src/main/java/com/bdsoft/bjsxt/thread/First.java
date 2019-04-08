@@ -8,6 +8,7 @@ public class First {
 	 * 线程就是一个程序里的不同执行路径
 	 */
 	public static void main(String[] args) {
+		// 两种开启线程的不同方式
 		Runner1 rn = new Runner1();
 		Thread td = new Thread(rn);
 		td.start();
