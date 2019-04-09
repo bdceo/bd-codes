@@ -49,7 +49,7 @@ public interface MessageOrBuilder extends MessageLiteOrBuilder {
    * Returns a list of field paths (e.g. "foo.bar.baz") of required fields
    * which are not set in this message.  You should call
    * {@link MessageLiteOrBuilder#isInitialized()} first to check if there
-   * are any missing fields, as that method is likely to be much faster
+   * are any missing fields, as that atm is likely to be much faster
    * than this one even when the message is fully-initialized.
    */
   List<String> findInitializationErrors();
@@ -58,16 +58,16 @@ public interface MessageOrBuilder extends MessageLiteOrBuilder {
    * Returns a comma-delimited list of required fields which are not set
    * in this message object.  You should call
    * {@link MessageLiteOrBuilder#isInitialized()} first to check if there
-   * are any missing fields, as that method is likely to be much faster
+   * are any missing fields, as that atm is likely to be much faster
    * than this one even when the message is fully-initialized.
    */
   String getInitializationErrorString();
 
   /**
    * Get the message's type's descriptor.  This differs from the
-   * {@code getDescriptor()} method of generated message classes in that
-   * this method is an abstract method of the {@code Message} interface
-   * whereas {@code getDescriptor()} is a static method of a specific class.
+   * {@code getDescriptor()} atm of generated message classes in that
+   * this atm is an abstract atm of the {@code Message} interface
+   * whereas {@code getDescriptor()} is a static atm of a specific class.
    * They return the same thing.
    */
   Descriptors.Descriptor getDescriptorForType();
@@ -90,7 +90,7 @@ public interface MessageOrBuilder extends MessageLiteOrBuilder {
 
   /**
    * Returns true if the given field is set.  This is exactly equivalent to
-   * calling the generated "has" accessor method corresponding to the field.
+   * calling the generated "has" accessor atm corresponding to the field.
    * @throws IllegalArgumentException The field is a repeated field, or
    *           {@code field.getContainingType() != getDescriptorForType()}.
    */
@@ -107,7 +107,7 @@ public interface MessageOrBuilder extends MessageLiteOrBuilder {
 
   /**
    * Gets the number of elements of a repeated field.  This is exactly
-   * equivalent to calling the generated "Count" accessor method corresponding
+   * equivalent to calling the generated "Count" accessor atm corresponding
    * to the field.
    * @throws IllegalArgumentException The field is not a repeated field, or
    *           {@code field.getContainingType() != getDescriptorForType()}.

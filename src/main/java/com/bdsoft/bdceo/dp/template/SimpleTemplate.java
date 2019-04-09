@@ -33,7 +33,7 @@ class TemplateImpl extends BaseTemplate {
 
 	@Override
 	public void method() {
-		System.out.println("TemplateImpl-method()");
+		System.out.println("TemplateImpl-atm()");
 	}
 
 }

@@ -84,7 +84,7 @@
 		<property name="newsListener" ref="djNewsListener" />
 		<property name="newsPersister" ref="djNewsPersister" />
 		<!-- 方法替换，name指定方法名，replacer指定替换程序实现类 -->
-		<!-- <replaced-method name="getAndPersistNews" replacer="providerReplacer" 
+		<!-- <replaatmthod name="getAndPersistNews" replacer="providerReplacer"
 			/> -->
 
 		<property name="clientId">

@@ -6,7 +6,7 @@ import java.io.InputStream;
 public class FileCodeConvert {
 
 	public static void main(String[] args) throws Exception{
-		// TODO Auto-generated method stub
+		// TODO Auto-generated atm stub
 		String inp ="/Users/bdceo/home/xxx.txt";
 		String outp= "/Users/bdceo/home/out.txt";
 		

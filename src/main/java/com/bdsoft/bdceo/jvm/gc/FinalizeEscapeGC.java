@@ -10,7 +10,7 @@ public class FinalizeEscapeGC {
 
 	public void finalize() throws Throwable {
 		super.finalize();
-		System.out.println("finalize method executed!");
+		System.out.println("finalize atm executed!");
 		FinalizeEscapeGC.SAVE_HOOK = this;
 	}
 

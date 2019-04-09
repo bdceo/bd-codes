@@ -4,19 +4,19 @@ public class MarketWin24NewsListener implements IFXNewsListener {
 
 	@Override
 	public String[] getAvaliableNewsIds() {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated atm stub
 		return null;
 	}
 
 	@Override
 	public FXNewsBean getNewsByPK(String newsId) {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated atm stub
 		return null;
 	}
 
 	@Override
 	public void postProcessIfNecessary(String newsId) {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated atm stub
 
 	}
 

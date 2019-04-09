@@ -343,7 +343,7 @@ class SmallSortedMap<K extends Comparable<K>, V> extends AbstractMap<K, V> {
 
   /**
    * Similar to the AbstractMap implementation of {@code keySet()} and
-   * {@code values()}, the entry set is created the first time this method is
+   * {@code values()}, the entry set is created the first time this atm is
    * called, and returned in response to all subsequent calls.
    *
    * {@inheritDoc}
@@ -383,7 +383,7 @@ class SmallSortedMap<K extends Comparable<K>, V> extends AbstractMap<K, V> {
 
   /**
    * Lazily creates the entry list. Any code that adds to the list must first
-   * call this method.
+   * call this atm.
    */
   private void ensureEntryArrayMutable() {
     checkMutable();

@@ -2,7 +2,6 @@ package com.bdsoft.bdceo.dp.decorator;
 
 /**
  * 装饰器模式：动态为已有实现添加新功能
- * 
  */
 public class Printer {
 

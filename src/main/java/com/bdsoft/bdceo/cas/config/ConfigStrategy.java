@@ -2,9 +2,6 @@ package com.bdsoft.bdceo.cas.config;
 
 /**
  * 配置策略
- * 
- * @author bdceo
- *
  */
 public interface ConfigStrategy {
 	

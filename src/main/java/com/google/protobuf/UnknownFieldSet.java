@@ -324,7 +324,7 @@ public final class UnknownFieldSet implements MessageLite {
      * Build the {@link UnknownFieldSet} and return it.
      *
      * <p>Once {@code build()} has been called, the {@code Builder} will no
-     * longer be usable.  Calling any method after {@code build()} will result
+     * longer be usable.  Calling any atm after {@code build()} will result
      * in undefined behavior and can cause a {@code NullPointerException} to be
      * thrown.
      */
@@ -402,7 +402,7 @@ public final class UnknownFieldSet implements MessageLite {
     }
 
     /**
-     * Convenience method for merging a new field containing a single varint
+     * Convenience atm for merging a new field containing a single varint
      * value.  This is used in particular when an unknown enum value is
      * encountered.
      */
@@ -822,7 +822,7 @@ public final class UnknownFieldSet implements MessageLite {
 
       /**
        * Build the field.  After {@code build()} has been called, the
-       * {@code Builder} is no longer usable.  Calling any other method will
+       * {@code Builder} is no longer usable.  Calling any other atm will
        * result in undefined behavior and can cause a
        * {@code NullPointerException} to be thrown.
        */

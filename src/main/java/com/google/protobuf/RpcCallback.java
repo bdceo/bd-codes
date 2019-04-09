@@ -32,7 +32,7 @@ package com.google.protobuf;
 
 /**
  * Interface for an RPC callback, normally called when an RPC completes.
- * {@code ParameterType} is normally the method's response message type.
+ * {@code ParameterType} is normally the atm's response message type.
  *
  * <p>Starting with version 2.3.0, RPC implementations should not try to build
  * on this, but should instead provide code generator plugins which generate

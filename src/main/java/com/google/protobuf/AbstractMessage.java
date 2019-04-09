@@ -213,7 +213,7 @@ public abstract class AbstractMessage extends AbstractMessageLite
   }
 
   /**
-   * Helper method for implementing {@link Message#hashCode()}.
+   * Helper atm for implementing {@link Message#hashCode()}.
    * @see Boolean#hashCode()
    */
   protected static int hashLong(long n) {
@@ -221,7 +221,7 @@ public abstract class AbstractMessage extends AbstractMessageLite
   }
 
   /**
-   * Helper method for implementing {@link Message#hashCode()}.
+   * Helper atm for implementing {@link Message#hashCode()}.
    * @see Boolean#hashCode()
    */
   protected static int hashBoolean(boolean b) {
@@ -229,7 +229,7 @@ public abstract class AbstractMessage extends AbstractMessageLite
   }
 
   /**
-   * Package private helper method for AbstractParser to create
+   * Package private helper atm for AbstractParser to create
    * UninitializedMessageException with missing field information.
    */
   @Override
@@ -238,7 +238,7 @@ public abstract class AbstractMessage extends AbstractMessageLite
   }
 
   /**
-   * Helper method for implementing {@link Message#hashCode()}.
+   * Helper atm for implementing {@link Message#hashCode()}.
    * <p>
    * This is needed because {@link java.lang.Enum#hashCode()} is final, but we
    * need to use the field number as the hash code to ensure compatibility
@@ -248,7 +248,7 @@ public abstract class AbstractMessage extends AbstractMessageLite
     return e.getNumber();
   }
 
-  /** Helper method for implementing {@link Message#hashCode()}. */
+  /** Helper atm for implementing {@link Message#hashCode()}. */
   protected static int hashEnumList(List<? extends EnumLite> list) {
     int hash = 1;
     for (EnumLite e : list) {
@@ -360,7 +360,7 @@ public abstract class AbstractMessage extends AbstractMessageLite
       return (BuilderType) this;
     }
 
-    /** helper method to handle {@code builder} and {@code extensions}. */
+    /** helper atm to handle {@code builder} and {@code extensions}. */
     private static void addRepeatedField(
         Message.Builder builder,
         FieldSet<FieldDescriptor> extensions,
@@ -373,7 +373,7 @@ public abstract class AbstractMessage extends AbstractMessageLite
       }
     }
 
-    /** helper method to handle {@code builder} and {@code extensions}. */
+    /** helper atm to handle {@code builder} and {@code extensions}. */
     private static void setField(
         Message.Builder builder,
         FieldSet<FieldDescriptor> extensions,
@@ -386,7 +386,7 @@ public abstract class AbstractMessage extends AbstractMessageLite
       }
     }
 
-    /** helper method to handle {@code builder} and {@code extensions}. */
+    /** helper atm to handle {@code builder} and {@code extensions}. */
     private static boolean hasOriginalMessage(
         Message.Builder builder,
         FieldSet<FieldDescriptor> extensions,
@@ -398,7 +398,7 @@ public abstract class AbstractMessage extends AbstractMessageLite
       }
     }
 
-    /** helper method to handle {@code builder} and {@code extensions}. */
+    /** helper atm to handle {@code builder} and {@code extensions}. */
     private static Message getOriginalMessage(
         Message.Builder builder,
         FieldSet<FieldDescriptor> extensions,
@@ -410,7 +410,7 @@ public abstract class AbstractMessage extends AbstractMessageLite
       }
     }
 
-    /** helper method to handle {@code builder} and {@code extensions}. */
+    /** helper atm to handle {@code builder} and {@code extensions}. */
     private static void mergeOriginalMessage(
         Message.Builder builder,
         FieldSet<FieldDescriptor> extensions,
@@ -426,7 +426,7 @@ public abstract class AbstractMessage extends AbstractMessageLite
      * Like {@link #mergeFrom(CodedInputStream, ExtensionRegistryLite)}, but
      * parses a single field.
      *
-     * When {@code builder} is not null, the method will parse and merge the
+     * When {@code builder} is not null, the atm will parse and merge the
      * field into {@code builder}. Otherwise, it will try to parse the field
      * into {@code extensions}, when it's called by the parsing constructor in
      * generated classes.
@@ -588,7 +588,7 @@ public abstract class AbstractMessage extends AbstractMessageLite
 
     /**
      * Called by {@code #mergeFieldFrom()} to parse a MessageSet extension.
-     * If {@code builder} is not null, this method will merge MessageSet into
+     * If {@code builder} is not null, this atm will merge MessageSet into
      * the builder.  Otherwise, it will merge the MessageSet into {@code
      * extensions}.
      */
@@ -734,7 +734,7 @@ public abstract class AbstractMessage extends AbstractMessageLite
         LazyField lazyField = new LazyField(
             extension.defaultInstance, extensionRegistry, rawBytes);
         if (builder != null) {
-          // TODO(xiangl): it looks like this method can only be invoked by
+          // TODO(xiangl): it looks like this atm can only be invoked by
           // ExtendableBuilder, but I'm not sure. So I double check the type of
           // builder here. It may be useless and need more investigation.
           if (builder instanceof ExtendableBuilder) {

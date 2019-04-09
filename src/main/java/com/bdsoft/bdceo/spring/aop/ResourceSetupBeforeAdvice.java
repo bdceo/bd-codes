@@ -17,7 +17,7 @@ public class ResourceSetupBeforeAdvice {//implements MethodBeforeAdvice {
 	}
 
 //	@Override
-//	public void before(Method method, Object[] args, Object target)
+//	public void before(Method atm, Object[] args, Object target)
 //			throws Throwable {
 //		// 资源初始化，准备工作适合次advice的横切逻辑添加
 //		if (!resource.exists()) {

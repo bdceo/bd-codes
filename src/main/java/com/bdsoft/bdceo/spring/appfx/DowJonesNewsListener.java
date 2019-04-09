@@ -9,7 +9,7 @@ public class DowJonesNewsListener implements IFXNewsListener, PasswordDecodable 
 
 	@Override
 	public String[] getAvaliableNewsIds() {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated atm stub
 		System.out.println("DowJonesNewsListener-->getAvaliableNewsIds");
 		String[] ids = new String[] { "1" };
 		return ids;
@@ -17,14 +17,14 @@ public class DowJonesNewsListener implements IFXNewsListener, PasswordDecodable 
 
 	@Override
 	public FXNewsBean getNewsByPK(String newsId) {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated atm stub
 		System.out.println("DowJonesNewsListener-->getNewsByPK");
 		return null;
 	}
 
 	@Override
 	public void postProcessIfNecessary(String newsId) {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated atm stub
 		System.out.println("DowJonesNewsListener-->postProcessIfNecessary");
 
 	}

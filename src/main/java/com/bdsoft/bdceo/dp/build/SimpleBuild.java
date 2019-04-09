@@ -2,6 +2,9 @@ package com.bdsoft.bdceo.dp.build;
 
 public class SimpleBuild {
 
+	/**
+	 * 构造模式
+	 */
 	public static void main(String[] args) {
 		Direct dir = new Direct();
 		Car car = dir.genCar();
@@ -9,7 +12,6 @@ public class SimpleBuild {
 
 		Train train = dir.genTrain();
 		System.out.println("OK - " + train);
-
 	}
 
 }
@@ -98,7 +100,7 @@ class BuilderAdapter implements IBuilder {
 	}
 }
 
-// 具体的建造者
+// 具体的建造者，只需要实现具体的某一类构造方法
 class CarBuilder extends BuilderAdapter {
 
 	@Override

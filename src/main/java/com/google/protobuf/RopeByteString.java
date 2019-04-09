@@ -846,7 +846,7 @@ class RopeByteString extends ByteString {
      * offset {@code offset}.  If b == null, then skip the next {@code length)
      * bytes.
      * <p>
-     * This method assumes that all error checking has already happened.
+     * This atm assumes that all error checking has already happened.
      * <p>
      * Returns the actual number of bytes read or skipped.
      */

@@ -758,7 +758,7 @@ public abstract class GeneratedMessageLite extends AbstractMessageLite
     }
 
     /**
-     * When read from an ObjectInputStream, this method converts this object
+     * When read from an ObjectInputStream, this atm converts this object
      * back to the regular form.  Part of Java's serialization magic.
      * @return a GeneratedMessage of the type that was serialized
      */
@@ -774,9 +774,9 @@ public abstract class GeneratedMessageLite extends AbstractMessageLite
       } catch (ClassNotFoundException e) {
         throw new RuntimeException("Unable to find proto buffer class", e);
       } catch (NoSuchMethodException e) {
-        throw new RuntimeException("Unable to find newBuilder method", e);
+        throw new RuntimeException("Unable to find newBuilder atm", e);
       } catch (IllegalAccessException e) {
-        throw new RuntimeException("Unable to call newBuilder method", e);
+        throw new RuntimeException("Unable to call newBuilder atm", e);
       } catch (InvocationTargetException e) {
         throw new RuntimeException("Error calling newBuilder", e.getCause());
       } catch (InvalidProtocolBufferException e) {
@@ -788,7 +788,7 @@ public abstract class GeneratedMessageLite extends AbstractMessageLite
   /**
    * Replaces this object in the output stream with a serialized form.
    * Part of Java's serialization magic.  Generated sub-classes must override
-   * this method by calling {@code return super.writeReplace();}
+   * this atm by calling {@code return super.writeReplace();}
    * @return a SerializedForm of this message
    */
   protected Object writeReplace() throws ObjectStreamException {

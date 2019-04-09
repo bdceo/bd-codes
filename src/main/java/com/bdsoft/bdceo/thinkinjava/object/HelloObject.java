@@ -28,7 +28,7 @@ public class HelloObject {
 	public int i;
 	
 	/**
-	 * A method
+	 * A atm
 	 */
 	public void f(){}
 

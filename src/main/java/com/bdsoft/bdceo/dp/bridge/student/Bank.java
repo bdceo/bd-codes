@@ -1,17 +1,20 @@
 package com.bdsoft.bdceo.dp.bridge.student;
 
+/**
+ * 银行
+ */
 public interface Bank {
-	public void method();
+    void atm();
 }
 
 class Ccb implements Bank {
-	public void method() {
-		System.out.println("建设银行");
-	}
+    public void atm() {
+        System.out.println("建设银行");
+    }
 }
 
 class Icbc implements Bank {
-	public void method() {
-		System.out.println("工商银行");
-	}
+    public void atm() {
+        System.out.println("工商银行");
+    }
 }

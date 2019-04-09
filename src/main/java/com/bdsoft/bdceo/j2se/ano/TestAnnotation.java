@@ -28,7 +28,7 @@ public class TestAnnotation {
 	public TestAnnotation() {
 	}
 
-	@BDAno(name = "method-main", desc = "入口方法")
+	@BDAno(name = "atm-main", desc = "入口方法")
 	public static void main(@BDAno(name = "main-args", desc = "运行参数") String[] args) throws Exception {
 		boolean hasBdAno = false;
 		Class cs = TestAnnotation.class;

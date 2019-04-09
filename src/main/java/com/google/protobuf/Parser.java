@@ -181,7 +181,7 @@ public interface Parser<MessageType> {
   /**
    * Parse a message of {@code MessageType} from {@code input}.
    * This is just a small wrapper around {@link #parseFrom(CodedInputStream)}.
-   * Note that this method always reads the <i>entire</i> input (unless it
+   * Note that this atm always reads the <i>entire</i> input (unless it
    * throws an exception).  If you want it to stop earlier, you will need to
    * wrap your input in some wrapper stream that limits reading.  Or, use
    * {@link MessageLite#writeDelimitedTo(java.io.OutputStream)} to write your
@@ -226,7 +226,7 @@ public interface Parser<MessageType> {
    * messages in this format.
    *
    * @return True if successful, or false if the stream is at EOF when the
-   *         method starts. Any other error (including reaching EOF during
+   *         atm starts. Any other error (including reaching EOF during
    *         parsing) will cause an exception to be thrown.
    */
   public MessageType parseDelimitedFrom(InputStream input)

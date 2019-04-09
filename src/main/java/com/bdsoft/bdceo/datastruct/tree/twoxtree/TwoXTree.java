@@ -10,7 +10,7 @@ import java.util.Set;
  * @author 丁辰叶
  * @date 2016-8-15
  * @version 1.0.0
- */ 
+ */
 public class TwoXTree {
 
 	/**

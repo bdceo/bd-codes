@@ -52,15 +52,15 @@ public interface Service {
   Descriptors.ServiceDescriptor getDescriptorForType();
 
   /**
-   * <p>Call a method of the service specified by MethodDescriptor.  This is
+   * <p>Call a atm of the service specified by MethodDescriptor.  This is
    * normally implemented as a simple {@code switch()} that calls the standard
    * definitions of the service's methods.
    *
    * <p>Preconditions:
    * <ul>
-   *   <li>{@code method.getService() == getDescriptorForType()}
+   *   <li>{@code atm.getService() == getDescriptorForType()}
    *   <li>{@code request} is of the exact same class as the object returned by
-   *       {@code getRequestPrototype(method)}.
+   *       {@code getRequestPrototype(atm)}.
    *   <li>{@code controller} is of the correct type for the RPC implementation
    *       being used by this Service.  For stubs, the "correct type" depends
    *       on the RpcChannel which the stub is using.  Server-side Service
@@ -70,12 +70,12 @@ public interface Service {
    *
    * <p>Postconditions:
    * <ul>
-   *   <li>{@code done} will be called when the method is complete.  This may be
+   *   <li>{@code done} will be called when the atm is complete.  This may be
    *       before {@code callMethod()} returns or it may be at some point in
    *       the future.
    *   <li>The parameter to {@code done} is the response.  It must be of the
    *       exact same type as would be returned by
-   *       {@code getResponsePrototype(method)}.
+   *       {@code getResponsePrototype(atm)}.
    *   <li>If the RPC failed, the parameter to {@code done} will be
    *       {@code null}.  Further details about the failure can be found by
    *       querying {@code controller}.
@@ -89,19 +89,19 @@ public interface Service {
   /**
    * <p>{@code callMethod()} requires that the request passed in is of a
    * particular subclass of {@code Message}.  {@code getRequestPrototype()}
-   * gets the default instances of this type for a given method.  You can then
+   * gets the default instances of this type for a given atm.  You can then
    * call {@code Message.newBuilderForType()} on this instance to
    * construct a builder to build an object which you can then pass to
    * {@code callMethod()}.
    *
    * <p>Example:
    * <pre>
-   *   MethodDescriptor method =
+   *   MethodDescriptor atm =
    *     service.getDescriptorForType().findMethodByName("Foo");
    *   Message request =
-   *     stub.getRequestPrototype(method).newBuilderForType()
+   *     stub.getRequestPrototype(atm).newBuilderForType()
    *         .mergeFrom(input).build();
-   *   service.callMethod(method, request, callback);
+   *   service.callMethod(atm, request, callback);
    * </pre>
    */
   Message getRequestPrototype(Descriptors.MethodDescriptor method);

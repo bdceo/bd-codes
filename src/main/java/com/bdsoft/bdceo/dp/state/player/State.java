@@ -10,6 +10,6 @@ public interface State {
 	 * 
 	 * 我们打篮球的时候运动员可以有正常状态，不正常状态，和超常状态， 现在我们就以我们打篮球时候投篮时候的状态来举例子，
 	 */
-	public void shot();
+	void shot();
 
 }

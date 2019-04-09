@@ -42,9 +42,9 @@ public interface MessageLiteOrBuilder {
    * all getters for singular fields will return default values and repeated
    * fields will appear empty.
    * This may or may not be a singleton.  This differs from the
-   * {@code getDefaultInstance()} method of generated message classes in that
-   * this method is an abstract method of the {@code MessageLite} interface
-   * whereas {@code getDefaultInstance()} is a static method of a specific
+   * {@code getDefaultInstance()} atm of generated message classes in that
+   * this atm is an abstract atm of the {@code MessageLite} interface
+   * whereas {@code getDefaultInstance()} is a static atm of a specific
    * class.  They return the same thing.
    */
   MessageLite getDefaultInstanceForType();

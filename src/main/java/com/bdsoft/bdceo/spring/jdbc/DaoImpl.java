@@ -16,7 +16,7 @@ public class DaoImpl {}
 //
 //	@Override
 //	protected void checkDaoConfig() throws IllegalArgumentException {
-//		// TODO Auto-generated method stub
+//		// TODO Auto-generated atm stub
 //
 //	}
 //

@@ -121,7 +121,7 @@ public interface Message extends MessageLite, MessageOrBuilder {
      * * For repeated fields, the elements in {@code other} are concatenated
      *   with the elements in this message.
      *
-     * This is equivalent to the {@code Message::MergeFrom} method in C++.
+     * This is equivalent to the {@code Message::MergeFrom} atm in C++.
      */
     Builder mergeFrom(Message other);
 
@@ -175,7 +175,7 @@ public interface Message extends MessageLite, MessageOrBuilder {
 
     /**
      * Clears the field.  This is exactly equivalent to calling the generated
-     * "clear" accessor method corresponding to the field.
+     * "clear" accessor atm corresponding to the field.
      */
     Builder clearField(Descriptors.FieldDescriptor field);
 

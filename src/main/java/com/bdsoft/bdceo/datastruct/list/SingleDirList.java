@@ -31,13 +31,18 @@ public class SingleDirList {
 		nm.addNode("无微不至");
 		nm.addNode("晓迈科技");
 		nm.addNode("微课网");
-		nm.addNode("律典");
+		nm.addNode("律典信息");
 		nm.addNode("居然设计家");
+		nm.addNode("花生好车");
 		System.out.println(nm);
 		
 		nm.delNode("石油在线");
+		nm.delNode("太格时代");
+		nm.delNode("第一视频");
 		nm.delNode("中网银科");
 		nm.delNode("无微不至");
+		nm.delNode("晓迈科技");
+		nm.delNode("律典信息");
 		System.out.println(nm);
 	}
 

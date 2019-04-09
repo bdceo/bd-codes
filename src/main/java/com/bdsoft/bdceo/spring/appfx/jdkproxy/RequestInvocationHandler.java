@@ -13,7 +13,7 @@ public class RequestInvocationHandler implements InvocationHandler {
 
 	// jdk-动态代理：在代理实例上处理方法调用并返回结果。在与方法关联的代理实例上调用方法时，将在调用处理程序上调用此方法。
 	// proxy - 在其上调用方法的代理实例
-	// method - 对应于在代理实例上调用的接口方法的 Method 实例
+	// atm - 对应于在代理实例上调用的接口方法的 Method 实例
 	public Object invoke(Object proxy, Method method, Object[] args)
 			throws Throwable {
 		System.out.println("jdk-dyProxy-name = " + proxy.getClass().getName());

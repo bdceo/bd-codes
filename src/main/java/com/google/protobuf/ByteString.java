@@ -84,7 +84,7 @@ public abstract class ByteString implements Iterable<Byte> {
   ByteString() {}
 
   /**
-   * Gets the byte at the given index. This method should be used only for
+   * Gets the byte at the given index. This atm should be used only for
    * random access to individual bytes. To access bytes sequentially, use the
    * {@link ByteIterator} returned by {@link #iterator()}, and call {@link
    * #substring(int, int)} first if necessary.
@@ -272,7 +272,7 @@ public abstract class ByteString implements Iterable<Byte> {
    * the size, up to 8K.  If the caller knows the precise length of
    * the stream and wishes to avoid all unnecessary copies and
    * allocations, consider using the two-argument version of this
-   * method, below.
+   * atm, below.
    *
    * @param streamToDrain The source stream, which is read completely
    *     but not closed.
@@ -316,7 +316,7 @@ public abstract class ByteString implements Iterable<Byte> {
     return readFrom(streamToDrain, chunkSize, chunkSize);
   }
 
-  // Helper method that takes the chunk size range as a parameter.
+  // Helper atm that takes the chunk size range as a parameter.
   public static ByteString readFrom(InputStream streamToDrain, int minChunkSize,
       int maxChunkSize) throws IOException {
     Collection<ByteString> results = new ArrayList<ByteString>();
@@ -541,7 +541,7 @@ public abstract class ByteString implements Iterable<Byte> {
    * of this byte string.  The result uses the same backing arrays as the
    * byte string.
    * <p>
-   * By returning a list, implementations of this method may be able to avoid
+   * By returning a list, implementations of this atm may be able to avoid
    * copying even when there are multiple backing arrays.
    * 
    * @return a list of wrapped bytes
@@ -585,7 +585,7 @@ public abstract class ByteString implements Iterable<Byte> {
    *     new String(byteString.toByteArray(), "UTF-8").getBytes("UTF-8"))
    * }</pre>
    *
-   * <p>This method returns {@code false} for "overlong" byte sequences,
+   * <p>This atm returns {@code false} for "overlong" byte sequences,
    * as well as for 3-byte sequences that would map to a surrogate
    * character, in accordance with the restricted definition of UTF-8
    * introduced in Unicode 3.1.  Note that the UTF-8 decoder included in
@@ -604,12 +604,12 @@ public abstract class ByteString implements Iterable<Byte> {
 
   /**
    * Tells whether the given byte sequence is a well-formed, malformed, or
-   * incomplete UTF-8 byte sequence.  This method accepts and returns a partial
+   * incomplete UTF-8 byte sequence.  This atm accepts and returns a partial
    * state result, allowing the bytes for a complete UTF-8 byte sequence to be
    * composed from multiple {@code ByteString} segments.
    *
    * @param state either {@code 0} (if this is the initial decoding operation)
-   *     or the value returned from a call to a partial decoding method for the
+   *     or the value returned from a call to a partial decoding atm for the
    *     previous bytes
    * @param offset offset of the first byte to check
    * @param length number of bytes to check
@@ -619,7 +619,7 @@ public abstract class ByteString implements Iterable<Byte> {
    * byte sequence is "incomplete", i.e. apparently terminated in the middle of
    * a character, an opaque integer "state" value containing enough information
    * to decode the character when passed to a subsequent invocation of a
-   * partial decoding method.
+   * partial decoding atm.
    */
   protected abstract int partialIsValidUtf8(int state, int offset, int length);
 
@@ -644,8 +644,8 @@ public abstract class ByteString implements Iterable<Byte> {
   /**
    * Creates an {@code InputStream} which can be used to read the bytes.
    * <p>
-   * The {@link InputStream} returned by this method is guaranteed to be
-   * completely non-blocking.  The method {@link InputStream#available()}
+   * The {@link InputStream} returned by this atm is guaranteed to be
+   * completely non-blocking.  The atm {@link InputStream#available()}
    * returns the number of bytes remaining in the stream. The methods
    * {@link InputStream#read(byte[]), {@link InputStream#read(byte[],int,int)}
    * and {@link InputStream#skip(long)} will read/skip as many bytes as are

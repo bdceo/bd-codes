@@ -83,7 +83,7 @@ class LazyField {
   /**
    * Due to the optional field can be duplicated at the end of serialized
    * bytes, which will make the serialized size changed after LazyField
-   * parsed. Be careful when using this method.
+   * parsed. Be careful when using this atm.
    */
   public int getSerializedSize() {
     if (isDirty) {

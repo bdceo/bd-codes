@@ -713,7 +713,7 @@ public abstract class GeneratedMessage extends AbstractMessage
             // Due to the optional field can be duplicated at the end of
             // serialized bytes, which will make the serialized size change
             // after lazy field parsed. So when we use LazyField globally,
-            // we need to change the following write method to write cached
+            // we need to change the following write atm to write cached
             // bytes directly rather than write the parsed message.
             FieldSet.writeField(descriptor, next.getValue(), output);
           }
@@ -1416,7 +1416,7 @@ public abstract class GeneratedMessage extends AbstractMessage
     } catch (NoSuchMethodException e) {
       throw new RuntimeException(
         "Generated message class \"" + clazz.getName() +
-        "\" missing method \"" + name + "\".", e);
+        "\" missing atm \"" + name + "\".", e);
     }
   }
 
@@ -1437,7 +1437,7 @@ public abstract class GeneratedMessage extends AbstractMessage
         throw (Error) cause;
       } else {
         throw new RuntimeException(
-          "Unexpected exception thrown by generated accessor method.", cause);
+          "Unexpected exception thrown by generated accessor atm.", cause);
       }
     }
   }
@@ -1454,7 +1454,7 @@ public abstract class GeneratedMessage extends AbstractMessage
      *
      * @param descriptor     The type's descriptor.
      * @param camelCaseNames The camelcase names of all fields in the message.
-     *                       These are used to derive the accessor method names.
+     *                       These are used to derive the accessor atm names.
      * @param messageClass   The message type.
      * @param builderClass   The builder type.
      */
@@ -1481,7 +1481,7 @@ public abstract class GeneratedMessage extends AbstractMessage
     }
 
     /**
-     * Ensures the field accessors are initialized. This method is thread-safe.
+     * Ensures the field accessors are initialized. This atm is thread-safe.
      *
      * @param messageClass   The message type.
      * @param builderClass   The builder type.
@@ -1930,7 +1930,7 @@ public abstract class GeneratedMessage extends AbstractMessage
   /**
    * Replaces this object in the output stream with a serialized form.
    * Part of Java's serialization magic.  Generated sub-classes must override
-   * this method by calling {@code return super.writeReplace();}
+   * this atm by calling {@code return super.writeReplace();}
    * @return a SerializedForm of this message
    */
   protected Object writeReplace() throws ObjectStreamException {

@@ -60,7 +60,7 @@ package com.google.protobuf;
  * well-formed in the absence of additional input, or if the byte sequence
  * apparently terminated in the middle of a character, an opaque integer
  * "state" value containing enough information to decode the character when
- * passed to a subsequent invocation of a partial decoding method.
+ * passed to a subsequent invocation of a partial decoding atm.
  *
  * @author martinrb@google.com (Martin Buchholz)
  */
@@ -102,7 +102,7 @@ final class Utf8 {
    * Returns {@code true} if the given byte array is a well-formed
    * UTF-8 byte sequence.
    *
-   * <p>This is a convenience method, equivalent to a call to {@code
+   * <p>This is a convenience atm, equivalent to a call to {@code
    * isValidUtf8(bytes, 0, bytes.length)}.
    */
   public static boolean isValidUtf8(byte[] bytes) {
@@ -115,7 +115,7 @@ final class Utf8 {
    * checked extends from index {@code index}, inclusive, to {@code
    * limit}, exclusive.
    *
-   * <p>This is a convenience method, equivalent to {@code
+   * <p>This is a convenience atm, equivalent to {@code
    * partialIsValidUtf8(bytes, index, limit) == Utf8.COMPLETE}.
    */
   public static boolean isValidUtf8(byte[] bytes, int index, int limit) {
@@ -129,7 +129,7 @@ final class Utf8 {
    * {@code limit}, exclusive.
    *
    * @param state either {@link Utf8#COMPLETE} (if this is the initial decoding
-   * operation) or the value returned from a call to a partial decoding method
+   * operation) or the value returned from a call to a partial decoding atm
    * for the previous bytes
    *
    * @return {@link #MALFORMED} if the partial byte sequence is
@@ -138,7 +138,7 @@ final class Utf8 {
    * "incomplete", i.e. apparently terminated in the middle of a character,
    * an opaque integer "state" value containing enough information to
    * decode the character when passed to a subsequent invocation of a
-   * partial decoding method.
+   * partial decoding atm.
    */
   public static int partialIsValidUtf8(
       int state, byte[] bytes, int index, int limit) {
@@ -234,7 +234,7 @@ final class Utf8 {
    * to be checked extends from index {@code index}, inclusive, to
    * {@code limit}, exclusive.
    *
-   * <p>This is a convenience method, equivalent to a call to {@code
+   * <p>This is a convenience atm, equivalent to a call to {@code
    * partialIsValidUtf8(Utf8.COMPLETE, bytes, index, limit)}.
    *
    * @return {@link #MALFORMED} if the partial byte sequence is
@@ -243,7 +243,7 @@ final class Utf8 {
    * "incomplete", i.e. apparently terminated in the middle of a character,
    * an opaque integer "state" value containing enough information to
    * decode the character when passed to a subsequent invocation of a
-   * partial decoding method.
+   * partial decoding atm.
    */
   public static int partialIsValidUtf8(
       byte[] bytes, int index, int limit) {

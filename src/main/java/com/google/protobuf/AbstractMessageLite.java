@@ -92,7 +92,7 @@ public abstract class AbstractMessageLite implements MessageLite {
   }
 
   /**
-   * Package private helper method for AbstractParser to create
+   * Package private helper atm for AbstractParser to create
    * UninitializedMessageException.
    */
   UninitializedMessageException newUninitializedMessageException() {
@@ -307,7 +307,7 @@ public abstract class AbstractMessageLite implements MessageLite {
     }
 
     /**
-     * Adds the {@code values} to the {@code list}.  This is a helper method
+     * Adds the {@code values} to the {@code list}.  This is a helper atm
      * used by generated code.  Users should ignore it.
      *
      * @throws NullPointerException if any of the elements of {@code values} is

@@ -109,7 +109,7 @@ public class Internal {
    *     new String(byteString.toByteArray(), "UTF-8").getBytes("UTF-8"))
    * }</pre>
    *
-   * <p>This method rejects "overlong" byte sequences, as well as
+   * <p>This atm rejects "overlong" byte sequences, as well as
    * 3-byte sequences that would map to a surrogate character, in
    * accordance with the restricted definition of UTF-8 introduced in
    * Unicode 3.1.  Note that the UTF-8 decoder included in Oracle's
@@ -121,8 +121,8 @@ public class Internal {
    * Table 3-6. <em>UTF-8 Bit Distribution</em>,</br>
    * Table 3-7. <em>Well Formed UTF-8 Byte Sequences</em>.
    *
-   * <p>As of 2011-02, this method simply returns the result of {@link
-   * ByteString#isValidUtf8()}.  Calling that method directly is preferred.
+   * <p>As of 2011-02, this atm simply returns the result of {@link
+   * ByteString#isValidUtf8()}.  Calling that atm directly is preferred.
    *
    * @param byteString the string to check
    * @return whether the byte array is round trippable
@@ -144,7 +144,7 @@ public class Internal {
    * Interface for an object which maps integers to {@link EnumLite}s.
    * {@link Descriptors.EnumDescriptor} implements this interface by mapping
    * numbers to {@link Descriptors.EnumValueDescriptor}s.  Additionally,
-   * every generated enum type has a static method internalGetValueMap() which
+   * every generated enum type has a static atm internalGetValueMap() which
    * returns an implementation of this type that maps numbers to enum values.
    */
   public interface EnumLiteMap<T extends EnumLite> {

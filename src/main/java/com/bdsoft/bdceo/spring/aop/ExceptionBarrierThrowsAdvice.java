@@ -15,7 +15,7 @@ public class ExceptionBarrierThrowsAdvice{// implements ThrowsAdvice {
 //		// 运行时异常处理
 //	}
 //
-//	public void afterThrowing(Method method, Object[] args, Object target,
+//	public void afterThrowing(Method atm, Object[] args, Object target,
 //			ApplicationException e) {
 //		// 应用程序异常
 //		// 应用程序异常后的报警机制实现，可在此添加

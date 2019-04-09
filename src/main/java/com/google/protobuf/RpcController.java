@@ -31,7 +31,7 @@
 package com.google.protobuf;
 
 /**
- * <p>An {@code RpcController} mediates a single method call.  The primary
+ * <p>An {@code RpcController} mediates a single atm call.  The primary
  * purpose of the controller is to provide a way to manipulate settings
  * specific to the RPC implementation and to find out about RPC-level errors.
  *
@@ -98,7 +98,7 @@ public interface RpcController {
 
   /**
    * If {@code true}, indicates that the client canceled the RPC, so the server
-   * may as well give up on replying to it.  This method must be called on the
+   * may as well give up on replying to it.  This atm must be called on the
    * server side only.  The server should still call the final "done" callback.
    */
   boolean isCanceled();

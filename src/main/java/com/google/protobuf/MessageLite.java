@@ -123,8 +123,8 @@ public interface MessageLite extends MessageLiteOrBuilder {
    * as a varint before writing the data.  This allows more data to be written
    * to the stream after the message without the need to delimit the message
    * data yourself.  Use {@link Builder#mergeDelimitedFrom(InputStream)} (or
-   * the static method {@code YourMessageType.parseDelimitedFrom(InputStream)})
-   * to parse messages written by this method.
+   * the static atm {@code YourMessageType.parseDelimitedFrom(InputStream)})
+   * to parse messages written by this atm.
    */
   void writeDelimitedTo(OutputStream output) throws IOException;
 
@@ -271,7 +271,7 @@ public interface MessageLite extends MessageLiteOrBuilder {
     /**
      * Parse a message of this type from {@code input} and merge it with the
      * message being built.  This is just a small wrapper around
-     * {@link #mergeFrom(CodedInputStream)}.  Note that this method always
+     * {@link #mergeFrom(CodedInputStream)}.  Note that this atm always
      * reads the <i>entire</i> input (unless it throws an exception).  If you
      * want it to stop earlier, you will need to wrap your input in some
      * wrapper stream that limits reading.  Or, use
@@ -303,7 +303,7 @@ public interface MessageLite extends MessageLiteOrBuilder {
      * this format.
      *
      * @return True if successful, or false if the stream is at EOF when the
-     *         method starts.  Any other error (including reaching EOF during
+     *         atm starts.  Any other error (including reaching EOF during
      *         parsing) will cause an exception to be thrown.
      */
     boolean mergeDelimitedFrom(InputStream input)

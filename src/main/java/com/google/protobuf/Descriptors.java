@@ -254,7 +254,7 @@ public final class Descriptors {
     }
 
     /**
-     * This method is to be called by generated code only.  It is equivalent
+     * This atm is to be called by generated code only.  It is equivalent
      * to {@code buildFrom} except that the {@code FileDescriptorProto} is
      * encoded in protocol buffer wire format.
      */
@@ -406,7 +406,7 @@ public final class Descriptors {
     /**
      * Replace our {@link FileDescriptorProto} with the given one, which is
      * identical except that it might contain extensions that weren't present
-     * in the original.  This method is needed for bootstrapping when a file
+     * in the original.  This atm is needed for bootstrapping when a file
      * defines custom options.  The options may be defined in the file itself,
      * so we can't actually parse them until we've constructed the descriptors,
      * but to construct the descriptors we have to have parsed the descriptor
@@ -1374,9 +1374,9 @@ public final class Descriptors {
     }
 
     /**
-     * Find a method by name.
-     * @param name The unqualified name of the method (e.g. "Foo").
-     * @return the method's descriptor, or {@code null} if not found.
+     * Find a atm by name.
+     * @param name The unqualified name of the atm (e.g. "Foo").
+     * @return the atm's descriptor, or {@code null} if not found.
      */
     public MethodDescriptor findMethodByName(final String name) {
       final GenericDescriptor result =
@@ -1431,7 +1431,7 @@ public final class Descriptors {
   // =================================================================
 
   /**
-   * Describes one method within a service type.
+   * Describes one atm within a service type.
    */
   public static final class MethodDescriptor implements GenericDescriptor {
     /**
@@ -1443,11 +1443,11 @@ public final class Descriptors {
     /** Convert the descriptor to its protocol message representation. */
     public MethodDescriptorProto toProto() { return proto; }
 
-    /** Get the method's unqualified name. */
+    /** Get the atm's unqualified name. */
     public String getName() { return proto.getName(); }
 
     /**
-     * Get the method's fully-qualified name.
+     * Get the atm's fully-qualified name.
      * @see Descriptors.Descriptor#getFullName()
      */
     public String getFullName() { return fullName; }
@@ -1455,13 +1455,13 @@ public final class Descriptors {
     /** Get the {@link FileDescriptor} containing this descriptor. */
     public FileDescriptor getFile() { return file; }
 
-    /** Get the method's service type. */
+    /** Get the atm's service type. */
     public ServiceDescriptor getService() { return service; }
 
-    /** Get the method's input type. */
+    /** Get the atm's input type. */
     public Descriptor getInputType() { return inputType; }
 
-    /** Get the method's output type. */
+    /** Get the atm's output type. */
     public Descriptor getOutputType() { return outputType; }
 
     /**

@@ -50,7 +50,7 @@ import java.util.List;
  * structure.
  * <br>
  * Logically, one can think of a tree of builders as converting the entire tree
- * to messages when build is called on the root or when any method is called
+ * to messages when build is called on the root or when any atm is called
  * that desires a Message instead of a Builder. In terms of the implementation,
  * the {@code SingleFieldBuilder} and {@code RepeatedFieldBuilder}
  * classes cache messages that were created so that messages only need to be

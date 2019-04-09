@@ -1,9 +1,3 @@
-/**
- * TestMain.java
- * com.bdsoft.bdceo.dp.dutylist
- * Copyright (c) 2016, 北京微课创景教育科技有限公司版权所有.
-*/
-
 package com.bdsoft.bdceo.dp.dutylist;
 
 import java.util.Random;

@@ -215,7 +215,7 @@ final class FieldSet<FieldDescriptorType extends
 
   /**
    * Useful for implementing
-   * {@link Message#getField(Descriptors.FieldDescriptor)}.  This method
+   * {@link Message#getField(Descriptors.FieldDescriptor)}.  This atm
    * returns {@code null} if the field is not set; in this case it is up
    * to the caller to fetch the field's default value.
    */
@@ -525,7 +525,7 @@ final class FieldSet<FieldDescriptorType extends
 
   /**
    * Read a field of any primitive type from a CodedInputStream.  Enums,
-   * groups, and embedded messages are not handled by this method.
+   * groups, and embedded messages are not handled by this atm.
    *
    * @param input The stream from which to read.
    * @param type Declared type of the field.
