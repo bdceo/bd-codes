@@ -21,7 +21,7 @@ public class Chapter04 {
      * 只能遍历一次
      * <p>
      * 流操作：中间操作(可以连接起来的流操作)，终端操作(关闭流的操作)
-     *
+     * <p>
      * 使用流：一个数据源，一个中间操作链，一个终端操作
      */
     public static void main(String[] args) {
@@ -64,8 +64,6 @@ public class Chapter04 {
                 .map(Dish::getName)
                 .limit(3)
                 .collect(Collectors.toList());
-
-
-
     }
+
 }

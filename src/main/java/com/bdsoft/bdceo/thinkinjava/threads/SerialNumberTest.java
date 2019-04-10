@@ -5,7 +5,6 @@ import java.util.concurrent.Executors;
 
 /**
  * volatile 属性标识的属性，进行递增操作时，也需要加锁进行强制同步
- * 
  */
 public class SerialNumberTest {
 

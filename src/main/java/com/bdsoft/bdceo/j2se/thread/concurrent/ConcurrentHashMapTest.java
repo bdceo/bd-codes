@@ -1,8 +1,3 @@
-/**
- * ConcurrentHashMapTest.java
- * com.bdsoft.bdceo.j2se.thread.concurrent
- * Copyright (c) 2014, 北京微课创景教育科技有限公司版权所有.
-*/
 package com.bdsoft.bdceo.j2se.thread.concurrent;
 
 import java.util.HashMap;

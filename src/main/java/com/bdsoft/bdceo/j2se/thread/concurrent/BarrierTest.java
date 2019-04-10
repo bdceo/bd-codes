@@ -21,7 +21,7 @@ public class BarrierTest {
 		}
 
 		pool.shutdown();
-		System.out.println("over");
+		System.out.println("main over");
 	}
 
 }
@@ -46,6 +46,7 @@ class SubTask implements Runnable {
 			System.out.println("task " + tname + " finish");
 			// 通知障碍器，计数
 			cb.await();
+			System.out.println("task " + tname + " exit");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
