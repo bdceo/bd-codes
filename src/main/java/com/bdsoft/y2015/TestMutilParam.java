@@ -3,7 +3,7 @@
  * com.bdsoft.y2014.m11
  * Copyright (c) 2014, 北京微课创景教育科技有限公司版权所有.
 */
-package com.bdsoft.y2014;
+package com.bdsoft.y2015;
 
 /**
  * 可变长参数，方法重载测试

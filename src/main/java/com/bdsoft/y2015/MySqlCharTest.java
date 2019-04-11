@@ -1,4 +1,4 @@
-package com.bdsoft.y2014;
+package com.bdsoft.y2015;
 
 public class MySqlCharTest {
 
