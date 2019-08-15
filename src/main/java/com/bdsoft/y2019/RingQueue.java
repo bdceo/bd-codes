@@ -1,15 +1,15 @@
 package com.bdsoft.y2019;
 
-import org.apache.commons.lang3.concurrent.BasicThreadFactory;
+//import org.apache.commons.lang3.concurrent.BasicThreadFactory;
 
 import java.time.Duration;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.*;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.ScheduledThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
+//import java.util.concurrent.ScheduledExecutorService;
+//import java.util.concurrent.ScheduledThreadPoolExecutor;
+//import java.util.concurrent.TimeUnit;
 
 /**
  * 环形队列 + 延迟任务
@@ -45,10 +45,10 @@ public class RingQueue {
         });
 
         // 异步任务：每1分钟扫描一个队列槽位，30分钟一圈
-        ScheduledExecutorService executorService = new ScheduledThreadPoolExecutor(1,
-                new BasicThreadFactory.Builder().namingPattern("扫描队列-pool-%d").daemon(false).build());
-        executorService.scheduleAtFixedRate(() -> {
-        }, 0, 2, TimeUnit.SECONDS);
+//        ScheduledExecutorService executorService = new ScheduledThreadPoolExecutor(1,
+//                new BasicThreadFactory.Builder().namingPattern("扫描队列-pool-%d").daemon(false).build());
+//        executorService.scheduleAtFixedRate(() -> {
+//        }, 0, 2, TimeUnit.SECONDS);
 
 
 //        Thread.sleep(1000*60*60*24L);
