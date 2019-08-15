@@ -37,12 +37,12 @@ public class SingleDirList {
 		System.out.println(nm);
 		
 		nm.delNode("石油在线");
-		nm.delNode("太格时代");
-		nm.delNode("第一视频");
-		nm.delNode("中网银科");
-		nm.delNode("无微不至");
-		nm.delNode("晓迈科技");
-		nm.delNode("律典信息");
+//		nm.delNode("太格时代");
+//		nm.delNode("第一视频");
+//		nm.delNode("中网银科");
+//		nm.delNode("无微不至");
+//		nm.delNode("晓迈科技");
+//		nm.delNode("律典信息");
 		System.out.println(nm);
 	}
 
