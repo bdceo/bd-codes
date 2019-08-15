@@ -1,64 +1,99 @@
 package com.bdsoft.y2019;
 
-import com.bdsoft.bdceo.thinkinjava.io.MemoryInput;
-
 /**
  * Created by bdceo on 2019/8/15.
  */
 public class Exam0815 {
 
+    public static void main(String[] args) {
+        // 删除单链表中元素
+        Solution so = new Solution();
+        LinkNode head = so.init();
+        head.show();
 
-
-
-
+        System.out.println();
+        head = so.removeElements(head, 6);
+        head.show();
+    }
 
 }
 
-// 删除单链表中元素
-class Solution{
+class Solution {
+
+    public LinkNode init() {
+        LinkNode head = new LinkNode(6);
+        head.add(6);
+        head.add(1);
+        head.add(2);
+        head.add(6);
+        head.add(3);
+        head.add(4);
+        head.add(6);
+        head.add(5);
+        head.add(6);
+        return head;
+    }
 
     /**
-     * input: 1 > 2 > 6 > 3 > 4 > 5 > 6
+     * input: 6 > 1 > 2 > 6 > 3 > 4 > 5 > 6
      * output: 1 > 2 > 3 > 4 > 5
      *
-     * @param head 链表头元素
-     * @param val 指定值
+     * @param head 链表头
+     * @param val  移除指定值
      * @return
      */
-    public LinkNode removeElements(LinkNode head, int val){
+    public LinkNode removeElements(LinkNode head, int val) {
+        if (head == null) {
+            throw new IllegalArgumentException("head element null");
+        }
+
+        // 递归删除
+        head.remove(val);
+
         // 判断头是否相等
-        if(head != null){
-            if(head.getVal() == val){
-                head = head.getNext();
-            }else{
-                head.remove(val);
-            }
+        if (head.getVal() == val) {
+            head = head.getNext();
         }
         return head;
     }
+
 }
 
-class LinkNode{
+class LinkNode {
 
     private int val;
     private LinkNode next;
 
-    public void remove(int v){
-        if(next != null) {
-            if (next.getVal() == v) {
-                next = next.getNext();
-            } else {
-                next.remove(v);
-            }
+    public LinkNode(int val) {
+        this.val = val;
+    }
+
+    public void add(int v) {
+        if (next == null) {
+            next = new LinkNode(v);
+        } else {
+            next.add(v);
+        }
+    }
+
+    public void remove(int v) {
+        if (next.getVal() == v) {
+            next = next.getNext();
+        }
+        if (next != null) {
+            next.remove(v);
+        }
+    }
+
+    public void show() {
+        System.out.print(this.val + "\t");
+        if (next != null) {
+            next.show();
         }
     }
 
     public int getVal() {
         return val;
-    }
-
-    public void setVal(int val) {
-        this.val = val;
     }
 
     public LinkNode getNext() {
@@ -68,4 +103,5 @@ class LinkNode{
     public void setNext(LinkNode next) {
         this.next = next;
     }
+
 }

@@ -29,6 +29,7 @@ public class SingleDirList {
 		nm.addNode("中彩汇");
 		nm.addNode("中网银科");
 		nm.addNode("无微不至");
+		nm.addNode("花生好车");
 		nm.addNode("晓迈科技");
 		nm.addNode("微课网");
 		nm.addNode("律典信息");
@@ -36,7 +37,7 @@ public class SingleDirList {
 		nm.addNode("花生好车");
 		System.out.println(nm);
 		
-		nm.delNode("石油在线");
+		nm.delNode("花生好车");
 //		nm.delNode("太格时代");
 //		nm.delNode("第一视频");
 //		nm.delNode("中网银科");
