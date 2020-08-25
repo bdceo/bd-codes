@@ -3,9 +3,9 @@ package com.bdsoft.bdceo.dp.factory.nongchang;
 // 抽象工厂
 public interface Gardener {
 
-	public Fruit createFruit(String name);
+	  Fruit createFruit(String name);
 
-	public Veggie createVeggie(String name);
+	  Veggie createVeggie(String name);
 }
 
 // 热带工厂，创建亚热带水果和蔬菜
