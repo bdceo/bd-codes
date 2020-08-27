@@ -26,5 +26,3 @@
     Strategy（策略）
     Template Method（模板方法）
     Visitor（访问者）
-
-

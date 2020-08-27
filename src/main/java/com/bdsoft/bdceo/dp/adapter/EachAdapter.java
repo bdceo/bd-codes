@@ -1,10 +1,10 @@
 package com.bdsoft.bdceo.dp.adapter;
 
+/**
+ * 双向适配器，采用组合方法，在一个新的组合类里同时拥有不同实现的引用
+ */
 public class EachAdapter {
 
-    /**
-     * 双向适配器，采用组合方法，在一个新的组合类里同时拥有不同实现的引用
-     */
     public static void main(String[] args) {
         // Frame1 f1 = new Frame1();
         // Frame2 f2 = new Frame2();
@@ -69,10 +69,12 @@ class Frame implements F1, F2 {
         f1.red();
     }
 
+    @Override
     public void red() {
         f1.red();
     }
 
+    @Override
     public void chn() {
         f2.chn();
     }

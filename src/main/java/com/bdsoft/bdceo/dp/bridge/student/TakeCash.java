@@ -1,5 +1,8 @@
 package com.bdsoft.bdceo.dp.bridge.student;
 
+/**
+ * 抽象：人和行为
+ */
 public class TakeCash {
 
     /**
@@ -10,10 +13,10 @@ public class TakeCash {
         Bank icbc = new Icbc();
         Bank ccb = new Ccb();
 
+        // 模拟两个学生取现
         Student s = new Master();
         s.takCash(icbc);
 
-        System.out.println();
         s = new Graduate();
         s.takCash(ccb);
     }
@@ -22,12 +25,12 @@ public class TakeCash {
 /**
  * 学生取现行为抽象
  */
-abstract class Student {
-    abstract void takCash(Bank mt);
+interface Student {
+    void takCash(Bank mt);
 }
 
 // 本科生
-class Graduate extends Student {
+class Graduate implements Student {
 
     public Graduate() {
     }
@@ -35,11 +38,12 @@ class Graduate extends Student {
     public void takCash(Bank m) {
         System.out.println("本科生");
         m.atm();
+        System.out.println();
     }
 }
 
 // 硕士生
-class Master extends Student {
+class Master implements Student {
 
     public Master() {
     }
@@ -47,5 +51,25 @@ class Master extends Student {
     public void takCash(Bank m) {
         System.out.println("硕士生");
         m.atm();
+        System.out.println();
+    }
+}
+
+/**
+ * 银行
+ */
+interface Bank {
+    void atm();
+}
+
+class Ccb implements Bank {
+    public void atm() {
+        System.out.println("建设银行");
+    }
+}
+
+class Icbc implements Bank {
+    public void atm() {
+        System.out.println("工商银行");
     }
 }

@@ -1,6 +1,7 @@
 参考：https://www.jianshu.com/p/dac220d3d314
 https://blog.csdn.net/qq_39384184/article/details/80080420
 
+
 原型模式（Prototype）：是一种对象创建型模式。
     是用于创建重复的对象，同时又能保证性能的一种创建型模式。
 
