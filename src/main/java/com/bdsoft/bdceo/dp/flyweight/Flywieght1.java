@@ -1,4 +1,4 @@
-package com.bdsoft.gkh.flyweight;
+package com.bdsoft.bdceo.dp.flyweight;
 
 import java.util.HashMap;
 

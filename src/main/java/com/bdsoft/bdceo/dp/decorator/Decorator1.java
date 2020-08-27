@@ -1,4 +1,4 @@
-package com.bdsoft.gkh.decorator;
+package com.bdsoft.bdceo.dp.decorator;
 
 public class Decorator1 {
 
@@ -8,12 +8,12 @@ public class Decorator1 {
     public static void main(String[] args) {
         // 适配器
         IRead iread = new ReadStrFromNet();
-        SubReadStrFromFile srsff = new SubReadStrFromFile(new Convert(iread));
+        SubReadStrFromFile srsff = new SubReadStrFromFile(new FConvert(iread));
         srsff.read();
 
         System.out.println("");
         // 装饰器
-        Convert convert = new Convert(new ReadStrFromFile());
+        FConvert convert = new FConvert(new ReadStrFromFile());
         convert.convert();
     }
 }
@@ -25,6 +25,7 @@ public class Decorator1 {
  * 问题类比：Convert为ReadStrFromFile服务，以后又要为其他类服务，
  * 用单向适配器模式，就必须为其他类编写子类，很麻烦
  * */
+
 //装饰模式要点：主模块接口注入扩展模块
 interface IRead {
     void read();
@@ -45,10 +46,10 @@ class ReadStrFromNet implements IRead {// 主模块
 }
 
 // 装饰模式
-class Convert {// 扩展模块,可以用Spring装配，可以为任何实现了IRead接口的类服务
+class FConvert {// 扩展模块,可以用Spring装配，可以为任何实现了IRead接口的类服务
     private IRead iread;
 
-    public Convert(IRead iread) {
+    public FConvert(IRead iread) {
         this.iread = iread;
     }
 
@@ -60,12 +61,15 @@ class Convert {// 扩展模块,可以用Spring装配，可以为任何实现了I
 
 // 适配器模式
 class SubReadStrFromFile extends ReadStrFromFile {
-    private Convert convert;
+    private FConvert convert;
 
-    public SubReadStrFromFile(Convert con) {
+    public SubReadStrFromFile(FConvert con) {
         this.convert = con;
     }
 
+    /**
+     * 对外暴露接口不变，内部实现增强
+     */
     public void read() {
         super.read();
         convert.convert();

@@ -1,4 +1,4 @@
-package com.bdsoft.gkh.proxy;
+package com.bdsoft.bdceo.dp.proxy;
 
 public class Proxy1 {
 
@@ -27,8 +27,12 @@ class ImageDisplay implements IImage {
 
 // 图片代理：显示缩略图片的逻辑及实现鼠标点击显示实际图片
 class ImageProxy implements IImage {
+
     private IImage ii;// 图片显示逻辑
 
+    /**
+     * 接口注入
+     */
     public ImageProxy(IImage ii) {
         this.ii = ii;
     }
