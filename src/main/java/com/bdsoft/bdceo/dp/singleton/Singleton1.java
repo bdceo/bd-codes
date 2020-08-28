@@ -1,4 +1,4 @@
-package com.bdsoft.gkh.singleton;
+package com.bdsoft.bdceo.dp.singleton;
 
 public class Singleton1 {
 

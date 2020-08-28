@@ -23,7 +23,7 @@ class Customer {
 	static private Vector<MyObserver> myObs;
 	
 	static {
-		myObs = new Vector<MyObserver>();
+		myObs = new Vector<>();
 	}
 
 	public Customer() {

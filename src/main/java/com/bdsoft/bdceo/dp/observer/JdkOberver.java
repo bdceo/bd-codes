@@ -27,7 +27,6 @@ public class JdkOberver {
 		System.out.println();
 
 		sub.error();
-
 	}
 
 }
@@ -38,9 +37,6 @@ public class JdkOberver {
  * 其中，在通知观察者时，需要先调用setChange方法，标明被观察者发生了变化
  * 然后，通知观察者notifyObservers方法，再确认所有观察者被执行完毕后可以将变化标识重置
  *
- * @author   丁辰叶
- * @date	 2016-7-25
- * @version  1.0.0
  */
 class Subject extends Observable {
 
@@ -69,6 +65,7 @@ class Subject extends Observable {
  */
 class OneHandler implements Observer {
 
+	@Override
 	public void update(Observable obs, Object param) {
 		System.out.println("OneHandler -> " + (String) param);
 
@@ -83,6 +80,7 @@ class OneHandler implements Observer {
 
 class TwoHandler implements Observer {
 
+	@Override
 	public void update(Observable subject, Object param) {
 		System.out.println("TwoHandler -> " + (String) param);
 	}

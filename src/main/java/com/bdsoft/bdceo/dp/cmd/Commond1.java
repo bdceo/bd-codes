@@ -1,4 +1,4 @@
-package com.bdsoft.gkh.cmd;
+package com.bdsoft.bdceo.dp.cmd;
 
 import java.util.HashMap;
 
@@ -11,15 +11,16 @@ public class Commond1 {
         String cmd = "001";
 
         // 原始方式，客户端关注太多
-        // if (cmd.equals("001")) {
-        // Module1 m1 = new Module1();
-        // m1.executeCommand();
-        // } else if (cmd.equals("002")) {
-        // Module2 m2 = new Module2();
-        // m2.executeCommand();
-        // } else {
-        // System.out.println("no cmd execute!");
-        // }
+        if (cmd.equals("001")) {
+            Module1 m1 = new Module1();
+            m1.executeCommand();
+        } else if (cmd.equals("002")) {
+            Module2 m2 = new Module2();
+            m2.executeCommand();
+        } else {
+            System.out.println("no cmd execute!");
+        }
+        System.out.println("----------------");
 
         // 命令模式：客户端只需调用命令调配器，获取命令执行对象，执行任务
         CommandConstructor.constructCommand();

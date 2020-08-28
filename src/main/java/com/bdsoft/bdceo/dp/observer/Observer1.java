@@ -1,4 +1,4 @@
-package com.bdsoft.gkh.observer;
+package com.bdsoft.bdceo.dp.observer;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -12,7 +12,7 @@ public class Observer1 {
      */
     public static void main(String[] args) {
         // 观察者
-        Customer cus = new Customer("bdceo");
+        Customer2 cus = new Customer2("bdceo");
         // 被观察者
         Product product = new Product("apple", 12);
 
@@ -55,11 +55,11 @@ class Product extends Observable {
 /**
  * 客户：观察者
  */
-class Customer implements Observer {
+class Customer2 implements Observer {
 
     private String cname;
 
-    public Customer(String name) {
+    public Customer2(String name) {
         this.cname = name;
     }
 

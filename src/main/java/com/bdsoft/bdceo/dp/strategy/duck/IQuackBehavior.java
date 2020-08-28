@@ -1,29 +1,35 @@
 package com.bdsoft.bdceo.dp.strategy.duck;
 
+/**
+ * 声音模式
+ */
 public interface IQuackBehavior {
-	public String quack();
+    String quack();
 }
 
 class QuackOne implements IQuackBehavior {
 
-	public String quack() {
-		return "GAGAGA";
-	}
+    @Override
+    public String quack() {
+        return "GAGAGA";
+    }
 
 }
 
 class QuackThree implements IQuackBehavior {
 
-	public String quack() {
-		return "gagaga";
-	}
+    @Override
+    public String quack() {
+        return "gagaga";
+    }
 
 }
 
 class QuackTwo implements IQuackBehavior {
 
-	public String quack() {
-		return "ga...ga...ga";
-	}
+    @Override
+    public String quack() {
+        return "ga...ga...ga";
+    }
 
 }

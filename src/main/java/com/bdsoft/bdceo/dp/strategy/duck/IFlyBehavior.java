@@ -1,19 +1,24 @@
 package com.bdsoft.bdceo.dp.strategy.duck;
 
+/**
+ * 飞行方式
+ */
 public interface IFlyBehavior {
-	public String fly();
+    String fly();
 }
 
 class FlyWithWings implements IFlyBehavior {
 
-	public String fly() {
-		return "I will fly high ...";
-	}
+    @Override
+    public String fly() {
+        return "I will fly high ...";
+    }
 }
 
 class FlyNoWay implements IFlyBehavior {
 
-	public String fly() {
-		return "I can not fly ...";
-	}
+    @Override
+    public String fly() {
+        return "I can not fly ...";
+    }
 }
