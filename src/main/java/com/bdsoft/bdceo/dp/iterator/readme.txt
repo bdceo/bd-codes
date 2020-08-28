@@ -1,0 +1,1 @@
+参考：https://www.cnblogs.com/hiscode/p/design_patterns_of_iterator.html
