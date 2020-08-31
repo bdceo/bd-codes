@@ -17,12 +17,12 @@
 三，行为性模式
     Chain of Responsibility（责任链）
     Command（命令）
-    Interpreter（解释器）
+    Interpreter（解释器）翻译员
     Iterator（迭代器）
-    Mediator（中介者）
-    Memento（备忘录）
+    Mediator（中介者）中间人，调解员
+    Memento（备忘录）纪念
     Observer（观察者）
     State（状态）
     Strategy（策略）
     Template Method（模板方法）
-    Visitor（访问者）
+    Visitor（访问者）游客
