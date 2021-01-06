@@ -1,16 +1,12 @@
 package com.bdsoft.y2021;
 
-import com.google.gson.JsonNull;
-import com.google.gson.JsonObject;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.RegExUtils;
 
 import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -53,12 +49,17 @@ public class HkYzZql {
                 allotSum += item.getExtUser() * item.getExtAllot();
             }
         }
-        log.info("乙组中签率={}%", BigDecimal.valueOf(allotSum)
+
+        BigDecimal rate = BigDecimal.valueOf(allotSum)
                 .divide(BigDecimal.valueOf(applySum), 4, BigDecimal.ROUND_HALF_UP)
-                .multiply(BigDecimal.valueOf(100)).setScale(2).toPlainString());
+                .multiply(BigDecimal.valueOf(100)).setScale(2);
+        log.info("乙组中签率={}%", rate.toPlainString());
     }
 
-    static void parse() throws Exception {
+    /**
+     * 测试解析
+     */
+    static void testParse() throws Exception {
         String str = "1,200,000";
         Number num = NumberFormat.getInstance().parse(str);
         log.info("{}", num.intValue());
@@ -130,8 +131,24 @@ class YzItem {
         }
     }
 
+    @Override
+    public String toString() {
+        StringBuilder str = new StringBuilder();
+        str.append("乙组：").append("申购股数=").append(applyTotal);
+        str.append(", 申购人数=").append(userTotal);
+        str.append(", 分配股数=").append(allotTotal);
+        if (extUser > 0) {
+            str.append(", 额外分配人数=").append(extUser);
+            str.append(", 额外分配股数=").append(extAllot);
+        }
+        return str.toString();
+    }
+
+    /**
+     * 解析分配规则
+     */
     private String[] parseExt(String str) {
-        String[] numbers = new String[4];
+        String[] numbers = new String[10];
         String reg = "([\\d,]+)";
         Pattern pat = Pattern.compile(reg);
         Matcher mat = pat.matcher(str);
