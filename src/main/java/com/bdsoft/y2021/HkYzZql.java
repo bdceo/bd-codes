@@ -17,9 +17,13 @@ import java.util.regex.Pattern;
 @Slf4j
 public class HkYzZql {
 
-    static String data = "2,500,000 6 566,000股股份，另6份申請中的2份額外獲發2,000股股份 22.67%\n" +
-            "3,000,000 1 680,000股股份 22.67%\n" +
-            "3,438,000 8 778,000股股份，另8份申請中的4份額外獲發2,000股股份 22.66%";
+    static String data = "2,000,000 4,217 10,000股股份，另外4,217名申請人中85名獲發額外1,000股股份 0.50%\n" +
+            "4,000,000 352 18,000股股份，另外352名申請人中15名獲發額外1,000股股份 0.45%\n" +
+            "6,000,000 109 26,000股股份，另外109名申請人中83名獲發額外1,000股股份 0.45%\n" +
+            "8,000,000 47 35,000股股份，另外47名申請人中32名獲發額外1,000股股份 0.45%\n" +
+            "10,000,000 43 44,000股股份，另外43名申請人中22名獲發額外1,000股股份 0.45%\n" +
+            "12,000,000 16 53,000股股份，另外16名申請人中3名獲發額外1,000股股份 0.44%\n" +
+            "12,500,000 118 55,000股股份，另外118名申請人中45名獲發額外1,000股股份 0.44%";
 
     /**
      * 解析+计算
@@ -34,14 +38,17 @@ public class HkYzZql {
         }
 
         calc(list);
+
+        log.info("max int={}",Integer.MAX_VALUE);
+        log.info("max long={}",Long.MAX_VALUE);
     }
 
     /**
      * 计算乙组中签率
      */
     static void calc(List<YzItem> data) {
-        int applySum = 0;
-        int allotSum = 0;
+        long applySum = 0;
+        long allotSum = 0;
         for (YzItem item : data) {
             applySum += item.getApplyTotal() * item.getUserTotal();
             allotSum += item.getUserTotal() * item.getAllotTotal();
@@ -88,40 +95,40 @@ class YzItem {
     /**
      * 申请股份数目
      */
-    private int applyTotal;
+    private long applyTotal;
 
     /**
      * 有效申请数目：人数
      */
-    private int userTotal;
+    private long userTotal;
 
     /**
      * 分配股份数目
      */
-    private int allotTotal;
+    private long allotTotal;
 
     /**
      * 额外分配人数
      */
-    private int extUser;
+    private long extUser;
 
     /**
      * 额外分配股份数目
      */
-    private int extAllot;
+    private long extAllot;
 
     public YzItem(String str) {
         NumberFormat nf = NumberFormat.getInstance();
         String[] data = str.split(" ");
         try {
-            this.applyTotal = nf.parse(data[0]).intValue();
-            this.userTotal = nf.parse(data[1]).intValue();
+            this.applyTotal = nf.parse(data[0]).longValue();
+            this.userTotal = nf.parse(data[1]).longValue();
 
             String[] numbers = this.parseExt(data[2]);
-            this.allotTotal = nf.parse(numbers[0]).intValue();
+            this.allotTotal = nf.parse(numbers[0]).longValue();
             if (numbers[2] != null && numbers[3] != null) {
-                this.extUser = nf.parse(numbers[2]).intValue();
-                this.extAllot = nf.parse(numbers[3]).intValue();
+                this.extUser = nf.parse(numbers[2]).longValue();
+                this.extAllot = nf.parse(numbers[3]).longValue();
             } else {
                 this.extUser = 0;
                 this.extAllot = 0;
