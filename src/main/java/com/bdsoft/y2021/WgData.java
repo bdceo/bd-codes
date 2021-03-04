@@ -3,12 +3,10 @@ package com.bdsoft.y2021;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.time.DateFormatUtils;
-import org.apache.commons.lang3.time.DateParser;
 import org.apache.commons.lang3.time.DateUtils;
 
 import java.text.ParseException;
 import java.util.*;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
@@ -38,6 +36,8 @@ public class WgData {
         // 生成买入、卖出点
         genBuyPoint(dtList, "买入", doList);
         genBuyPoint(dtList, "卖出", doList);
+        // 成本线
+        genCostLine(dtList, doList);
     }
 
     /**
@@ -62,14 +62,23 @@ public class WgData {
      */
     public static void genBuyPoint(List<Date> dtList, String bs, List<DeliverOrder> doList) {
         StringBuilder data = new StringBuilder();
-        Map<Date, DeliverOrder> doMap = doList.stream().collect(Collectors.toMap(DeliverOrder::getDay, Function.identity(), (a1, a2) -> a1));
+        Map<Date, List<DeliverOrder>> doMap = doList.stream().collect(Collectors.groupingBy(DeliverOrder::getDay));
         for (Date d : dtList) {
-            DeliverOrder order = doMap.get(d);
-            if (order != null && order.getBs().contains(bs)) {
-                if (dtList.contains(order.getDay())) {
-                    data.append("'").append(order.getPrice()).append("',");
-                } else {
+            List<DeliverOrder> orders = doMap.get(d);
+            if (orders != null) {
+                float cost = 0;
+                int total = 0;
+                for (DeliverOrder order : orders) {
+                    if (order.getBs().contains(bs)) {
+                        cost += order.getCost();
+                        total += order.getTotal();
+                    }
+                }
+                if (total == 0) {
                     data.append(",");
+                } else {
+                    float price = cost / total;
+                    data.append("'").append(String.format("%.3f", price)).append("',");
                 }
             } else {
                 data.append(",");
@@ -81,32 +90,65 @@ public class WgData {
     }
 
     /**
+     * 计算成本点位
+     */
+    public static void genCostLine(List<Date> dtList, List<DeliverOrder> doList) {
+        StringBuilder data = new StringBuilder();
+        Map<Date, List<DeliverOrder>> doMap = doList.stream().collect(Collectors.groupingBy(DeliverOrder::getDay));
+        float cost = 0;
+        int total = 0;
+        for (Date d : dtList) {
+            List<DeliverOrder> orders = doMap.get(d);
+            if (orders != null) {
+                for (DeliverOrder order : orders) {
+                    if (order.getBs().contains("买入")) {
+                        cost += order.getCost();
+                        total += order.getTotal();
+                    } else {
+                        cost -= order.getCost();
+                        total += order.getTotal();
+                    }
+                }
+                float price = total == 0 ? 0 : cost / total;
+                data.append("'").append(String.format("%.3f", price)).append("',");
+            } else {
+                if (total > 0) {
+                    float price = cost / total;
+                    data.append("'").append(String.format("%.3f", price)).append("',");
+                } else {
+                    data.append(",");
+                }
+            }
+        }
+        data.replace(data.length() - 1, data.length(), "");
+        log.info("成本线");
+        log.info("data: [{}],", data.toString());
+    }
+
+    /**
      * 解析收盘净值
      */
     public static List<DailyValue> parseValue() {
-        String data = "2021/3/3\t1.1587\n" +
-                "2021/3/2\t1.1532\n" +
-                "2021/3/1\t1.1472\n" +
-                "2021/2/26\t1.1187\n" +
-                "2021/2/25\t1.1282\n" +
-                "2021/2/24\t1.1349\n" +
-                "2021/2/23\t1.1331\n" +
-                "2021/2/22\t1.1368\n" +
-                "2021/2/19\t1.163\n" +
-                "2021/2/18\t1.1525\n" +
-                "2021/2/10\t1.1489\n" +
-                "2021/2/9\t1.1244\n" +
-                "2021/2/8\t1.1006\n" +
-                "2021/2/5\t1.0978\n" +
-                "2021/2/4\t1.1197\n" +
-                "2021/2/3\t1.1345\n" +
-                "2021/2/2\t1.1664\n" +
-                "2021/2/1\t1.1541\n" +
-                "2021/1/29\t1.1497\n" +
-                "2021/1/28\t1.157\n" +
-                "2021/1/27\t1.2068\n" +
-                "2021/1/26\t1.2028\n" +
-                "2021/1/25\t1.2324\n";
+        String data = "2021/3/3\t2.3243\t2.3243\n" +
+                "2021/3/2\t2.3151\t2.3151\n" +
+                "2021/3/1\t2.3472\t2.3472\n" +
+                "2021/2/26\t2.2502\t2.2502\n" +
+                "2021/2/25\t2.3187\t2.3187\n" +
+                "2021/2/24\t2.3536\t2.3536\n" +
+                "2021/2/23\t2.4303\t2.4303\n" +
+                "2021/2/22\t2.4581\t2.4581\n" +
+                "2021/2/19\t2.5636\t2.5636\n" +
+                "2021/2/18\t2.5439\t2.5439\n" +
+                "2021/2/10\t2.5531\t\n" +
+                "2021/2/9\t2.497\t2.497\n" +
+                "2021/2/8\t2.4642\t2.4642\n" +
+                "2021/2/5\t2.4688\t2.4688\n" +
+                "2021/2/4\t2.4632\t2.4632\n" +
+                "2021/2/3\t2.4604\t2.4604\n" +
+                "2021/2/2\t2.4091\t2.4091\n" +
+                "2021/2/1\t2.3852\t2.3852\n" +
+                "2021/1/29\t2.2853\t2.2853\n" +
+                "2021/1/28\t2.3175\t2.3175\n";
 
         String[] arr = data.split("\n");
         List<DailyValue> dvList = new ArrayList<>(arr.length);
@@ -122,23 +164,15 @@ public class WgData {
      * 解析交割单
      */
     public static List<DeliverOrder> parseDeliver() {
-        String data = "20210128\t证券买入\t512880\t证券ETF\t证券买入\t900\t1.162\n" +
-                "20210128\t证券买入\t512880\t证券ETF\t证券买入\t900\t1.166\n" +
-                "20210129\t证券买入\t512880\t证券ETF\t证券买入\t900\t1.154\n" +
-                "20210201\t证券买入\t512880\t证券ETF\t证券买入\t900\t1.151\n" +
-                "20210201\t证券买入\t512880\t证券ETF\t证券买入\t900\t1.151\n" +
-                "20210202\t证券买入\t512880\t证券ETF\t证券买入\t900\t1.139\n" +
-                "20210203\t证券买入\t512880\t证券ETF\t证券买入\t900\t1.140\n" +
-                "20210204\t证券买入\t512880\t证券ETF\t证券买入\t900\t1.114\n" +
-                "20210205\t证券买入\t512880\t证券ETF\t证券买入\t900\t1.108\n" +
-                "20210209\t证券买入\t512880\t证券ETF\t证券买入\t900\t1.134\n" +
-                "20210218\t证券买入\t512880\t证券ETF\t证券买入\t900\t1.139\n" +
-                "20210224\t证券买入\t512880\t证券ETF\t证券买入\t900\t1.117\n" +
-                "20210225\t证券买入\t512880\t证券ETF\t证券买入\t900\t1.121\n" +
-                "20210226\t证券买入\t512880\t证券ETF\t证券买入\t900\t1.102\n" +
-                "20210301\t证券买入\t512880\t证券ETF\t证券买入\t1000\t1.089\n" +
-                "20210301\t证券买入\t512880\t证券ETF\t证券买入\t1000\t1.088\n" +
-                "20210302\t证券买入\t512880\t证券ETF\t证券买入\t1000\t1.078\n";
+        String data = "20210128\t证券买入\t513050\t中概互联\t证券买入\t500\t2.360\t1180.000\n" +
+                "20210128\t证券买入\t513050\t中概互联\t证券买入\t500\t2.321\t1160.500\n" +
+                "20210129\t证券买入\t513050\t中概互联\t证券买入\t400\t2.321\t928.400\n" +
+                "20210209\t证券买入\t513050\t中概互联\t证券买入\t400\t2.458\t983.200\n" +
+                "20210218\t证券买入\t513050\t中概互联\t证券买入\t400\t2.572\t1028.800\n" +
+                "20210224\t证券买入\t513050\t中概互联\t证券买入\t400\t2.360\t944.000\n" +
+                "20210225\t证券买入\t513050\t中概互联\t证券买入\t400\t2.400\t960.000\n" +
+                "20210226\t证券买入\t513050\t中概互联\t证券买入\t400\t2.284\t913.600\n" +
+                "20210301\t证券买入\t513050\t中概互联\t证券买入\t400\t2.311\t924.400\n";
 
         String[] arr = data.split("\n");
         List<DeliverOrder> doList = new ArrayList<>(arr.length);
@@ -151,6 +185,7 @@ public class WgData {
             order.setBs(tds[4]);
             order.setTotal(tds[5]);
             order.setPrice(tds[6]);
+            order.setCost(tds[7]);
             doList.add(order);
         }
         return doList;
@@ -195,6 +230,11 @@ class DeliverOrder {
      */
     private Float price;
 
+    /**
+     * 成交金额
+     */
+    private Float cost;
+
     public void setDay(String day) {
         try {
             this.day = DateUtils.parseDate(day, "yyyy/MM/dd", "yyyy-MM-dd", "yyyyMMdd", "yyyy年MM月dd日");
@@ -210,4 +250,9 @@ class DeliverOrder {
     public void setPrice(String price) {
         this.price = Float.parseFloat(price);
     }
+
+    public void setCost(String cost) {
+        this.cost = Float.parseFloat(cost);
+    }
+
 }
