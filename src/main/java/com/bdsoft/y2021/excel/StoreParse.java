@@ -3,6 +3,7 @@ package com.bdsoft.y2021.excel;
 import com.alibaba.excel.EasyExcel;
 import com.bdsoft.utils.CollectionUtil;
 import com.bdsoft.utils.FileUtil;
+import com.bdsoft.utils.StringUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.CollectionUtils;
@@ -11,6 +12,7 @@ import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -42,21 +44,19 @@ public class StoreParse {
 
         // 输出的sql
         List<String> sqlList = new ArrayList<>(icsList.size() / 2);
-        String tmp = "update t_receipt r, t_mst_organization o set r.sale_store_id=o.id where r.vin='{}' and o.code='{}';\r\n";
+        String tmp = "update t_receipt r, t_mst_organization o set r.sale_store_id=o.id where r.id={0} and o.code=''{1}'';";
 
         for (IcsPO ipo : icsList) {
             List<SettPO> spoList = vinMap.get(ipo.getVin());
             if (!CollectionUtils.isEmpty(spoList) && spoList.size() == 1) {
                 SettPO spo = spoList.get(0);
-                String sql = MessageFormat.format(tmp, ipo.getVin(), spo.getStoreCode());
+                String sql = MessageFormat.format(tmp, ipo.getId(), spo.getStoreCode());
                 if (ipo.getStoreId() == null) {
-                    log.info("保险销售门店空：{}", ipo.getVin());
                     sqlList.add(sql);
-                } else if (!spo.getStoreCode().equals(ipo.getStoreCode())) {
-                    log.info("保险销售门店不匹配：{}", ipo.getVin());
+                    log.info("销售门店缺失：{}", ipo.getId());
+                } else if (StringUtil.isNotEmpty(ipo.getStoreCode()) && !ipo.getStoreCode().equals(spo.getStoreCode())) {
                     sqlList.add(sql);
-                } else {
-                    log.info("门店一致：{}", ipo.getVin());
+                    log.info("销售门店不匹配：{}", ipo.getId());
                 }
             } else {
                 log.info("车架号缺失或存在多个门店：{}", ipo.getVin());
@@ -65,7 +65,7 @@ public class StoreParse {
 
         // 输出
         String sqlFile = "e:\\download\\dml.sql";
-        String content = StringUtils.join(sqlList);
+        String content = StringUtils.join(sqlList, "\r\n");
         FileUtil.writeFile(sqlFile, content, true);
     }
 
